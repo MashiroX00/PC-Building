@@ -1,4 +1,15 @@
 .menu {
-    margin-top: 70vh;
+    margin-top: 75vh;
     
+}
+body {
+    background-image: url(./src/assets/พื้นหลัง2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+header {
+    
+    backdrop-filter: blur(3px);
 }
