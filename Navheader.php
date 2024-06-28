@@ -17,8 +17,8 @@
 
 
         <div class="text-end">
-          <button type="button" class="btn logintbn me-2" style="background-color: #A6E1FA;">Login</button>
-          <button type="button" class="btn signupbtn " style="background-color: #A6E1FA;">Sign-up</button>
+          <a href="<?php echo $url."loginUser.php"?>" class="btn btn-outline-primary me-2">Login</a>
+          <a href="" class="btn btn-outline-secondary me-2">Register</a>
         </div>
       </div>
     </div>

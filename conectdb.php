@@ -1,4 +1,7 @@
 <?php
+//url container
+$url = "http://localhost/PCBS/";
+
 $servername = "localhost";
 $username = "root";
 $password = "";

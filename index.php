@@ -20,7 +20,7 @@ include "./conectdb.php"
 <div class="container text-center menu">
   <div class="row">
     <div class="col">
-      <form action="./ModeSelection.php" method="post">
+      <form action="<?php echo $url."ModeSelection.php";?>" method="post">
       <div class="d-grid gap-2 col-6 mx-auto">
       <button type="submit" class="btn btn-primary btn-lg">Start Game</button>
       </div>
