@@ -1,0 +1,11 @@
+.card-img-top {
+    filter: blur(5px);
+  }
+.card-img-overlay img {
+    position: relative;
+    z-index: 2;
+    transition: 0.5s;
+  }
+.card-img-overlay img:hover {
+    scale: 1.4;
+}
