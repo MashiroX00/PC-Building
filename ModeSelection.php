@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mode Selection</title>
-    <link rel="stylesheet" href="mode.css">
+    <link rel="stylesheet" href="<?php echo $url;?>mode.css">
     <link rel="stylesheet" href="<?php echo $url;?>node_modules//bootstrap//dist/css/bootstrap.min.css">
     <script src="<?php echo $url;?>node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -64,7 +64,7 @@
     </div>
     <div class="container d-flex justify-content-center align-items-center">
       <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: -25rem;">
-      <a href="<?php echo $url."index.php";?>" class="btn btn-outline-secondary">Return to main menu</a>
+      <a href="<?php echo $url;?> "index.php"" class="btn btn-outline-secondary">Return to main menu</a>
       </div>
         
     </div>
