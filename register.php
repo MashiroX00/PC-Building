@@ -8,7 +8,7 @@ include "./conectdb.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="<?php echo $url; ?>node_modules//bootstrap//dist/css/bootstrap.min.css">
     <script src="<?php echo $url; ?>node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/fontawesome.css">
@@ -28,8 +28,8 @@ include "./conectdb.php";
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="texthead">
-                    <h4 class="text-center">Login</h4>
-                    <h4 class="text-center mb-4">ลงชื่อเข้าใช้</h4>
+                    <h4 class="text-center">Register</h4>
+                    <h4 class="text-center mb-4">สมัครสมาชิก</h4>
                     <form action="" class="bg-color p-3 rounded-3">
                         <div class="">
                             <div class="input-group mb-3">
@@ -42,6 +42,15 @@ include "./conectdb.php";
                         </div>
                         <div class="">
                             <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <div class=" form-floating">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                    <label for="email" class="form-label">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <div class="form-floating">
                                     <input type="password" class="form-control" placeholder="Password">
@@ -49,18 +58,26 @@ include "./conectdb.php";
                                 </div>
                             </div>
                         </div>
+                        <div class="">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                <div class="form-floating">
+                                    <input type="cfpassword" class="form-control" placeholder="Confirm Password">
+                                    <label for="floatingPassword" class="form-label">Confirm Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="row gx-4">
                             <div class="col-md-6 ">
-                                <button type="submit" class="btn btn-primary me-1 rounded-pill"><i class="fa-solid fa-arrow-right"></i> Login</button>
+                                <button type="submit" class="btn btn-primary me-1 rounded-pill"><i class="fa-solid fa-arrow-right"></i> Register</button>
                             </div>
                             <div class="col-md-6 ">
                                 <a href="<?php echo $url ?>index.php" role="button" class="btn btn-danger rounded-pill"><i class="fa-solid fa-xmark"></i> Cancal</a>
                             </div>
                         </div>
                         <p class="d-block text text-center mt-5 ">
-                            ยังไม่มีบัญชีหรอ? <a href="<?php echo $url;?>register.php" class="text-decoration-none">สมัครสมาชิก</a>เลย.
-                            <br>
-                            ลืมรหัสผ่านหรอ?<a href="" class="text-decoration-none">เปลี่ยนรหัสผ่าน</a>เลย.
+                            มีบัญชีอยู่แล้วหรอ? <a href="<?php echo $url;?>register.php" class="text-decoration-none">ลงชื่อเข้าใช้</a>เลย.
                         </p>
 
                     </form>
@@ -78,4 +95,4 @@ include "./conectdb.php";
     <script src="<?php echo $url; ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
-</html>
+</html> 
