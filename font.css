@@ -1,0 +1,8 @@
+@font-face {
+    font-family: KanitNormal;
+    src: url(./src/Kanit/Kanit-Light.ttf);
+}
+
+body {
+    font-family: KanitNormal;
+}
