@@ -1,6 +1,6 @@
 <?php
 //url container
-$url = "http://localhost/PCBS/";
+$url = "http://localhost/PC-Building/";
 
 $servername = "localhost";
 $username = "root";
