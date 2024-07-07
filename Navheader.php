@@ -17,8 +17,8 @@
 
 
         <div class="text-end">
-          <a href="<?php echo $url."loginUser.php"?>" class="btn btn-outline-primary me-2">Login</a>
-          <a href="" class="btn btn-outline-secondary me-2">Register</a>
+          <a href="<?php echo $url."loginUser.php";?>" class="btn btn-outline-primary me-2">Login</a>
+          <a href="<?php echo $url."register.php";?>" class="btn btn-outline-secondary me-2">Register</a>
         </div>
       </div>
     </div>
