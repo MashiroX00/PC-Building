@@ -94,7 +94,7 @@ include "./conectdb.php";
                             </div>
                         </div>
                         <p class="d-block text text-center mt-5 ">
-                            มีบัญชีอยู่แล้วหรอ? <a href="<?php echo $url;?>login.php" class="text-decoration-none">ลงชื่อเข้าใช้</a>เลย.
+                            มีบัญชีอยู่แล้วหรอ? <a href="<?php echo $url;?>loginUser.php" class="text-decoration-none">ลงชื่อเข้าใช้</a>เลย.
                         </p>
 
                     </form>
