@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "./conectdb.php";
 ?>
 
@@ -30,12 +31,28 @@ include "./conectdb.php";
                 <div class="texthead">
                     <h4 class="text-center">Login</h4>
                     <h4 class="text-center mb-4">ลงชื่อเข้าใช้</h4>
-                    <form action="" class="bg-color p-3 rounded-3">
+                    <?php if (isset($_SESSION["success"])) { ?>
+                    <div class="alert alert-success">
+                        <?php
+                        echo $_SESSION["success"];
+                        unset($_SESSION["success"]);
+                        ?>
+                    </div>
+                <?php } ?>
+                <?php if (isset($_SESSION["error"])) { ?>
+                    <div class="alert alert-warning">
+                        <?php
+                        echo $_SESSION["error"];
+                        unset($_SESSION["error"]);
+                        ?>
+                    </div>
+                <?php } ?>
+                    <form action="<?php $url;?>proceed/LOGIN.php" class="bg-color p-3 rounded-3" method="POST">
                         <div class="">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Username">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
                                     <label for="username" class="form-label">Username</label>
                                 </div>
                             </div>
@@ -44,7 +61,7 @@ include "./conectdb.php";
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password" name="password">
                                     <label for="floatingPassword" class="form-label">Password</label>
                                 </div>
                             </div>
