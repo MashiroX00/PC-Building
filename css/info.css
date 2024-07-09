@@ -1,0 +1,12 @@
+header {
+    backdrop-filter: blur(6px);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(255, 255, 255, 0.04) 0px 10px 10px -5px;
+}
+
+body {
+    background-color: #1d0c1b !important;
+
+}
+.card {
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px, rgba(243, 243, 243, 0.3) 0px 30px 60px -30px;
+}

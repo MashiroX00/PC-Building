@@ -1,15 +1,22 @@
-.menu {
-    margin-top: 75vh;
-    
+header {
+    backdrop-filter: blur(6px);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
 }
 body {
     background-image: url(./src/assets/พื้นหลัง2.png);
+    background-attachment: scroll;
     background-repeat: no-repeat;
-    background-size: cover;
-    
+    background-color: #1d0c1b !important;
 }
-
-header {
+.menu {
+    margin-top: 75vh;
+}
+.moreinfo {
+    margin-top: 35vh;
+    margin-bottom: 10vh;
+}
+.card {
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(102, 94, 94, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     
-    backdrop-filter: blur(3px);
 }
