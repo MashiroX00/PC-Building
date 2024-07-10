@@ -1,0 +1,22 @@
+p {
+    color: white;
+}
+.bg-color {
+    background-color: #877777;
+    border: 1px solid black;
+    
+}
+.texthead {
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 2em;
+    box-shadow: rgba(128, 111, 111, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
+}
+.btn {
+    width: 9em;
+}
+body {
+    background-color: #1d0c1b !important;
+
+}

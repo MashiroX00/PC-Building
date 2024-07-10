@@ -23,11 +23,11 @@ include "./conectdb.php";
     <?php
     include "./LoginHeaderbar.php";
     ?>
-    <div class="container mt-5">
+    <div class="container mt-1">
         <div class="row">
-            <div class="col-lg-4 col-md-3">
-            </div>
             <div class="col-lg-4 col-md-6">
+            </div>
+            <div class="col-lg-4 col-md-12">
                 <div class="texthead">
                     <h4 class="text-center">Register</h4>
                     <h4 class="text-center mb-4">สมัครสมาชิก</h4>
@@ -68,6 +68,25 @@ include "./conectdb.php";
                         </div>
                         <div class="">
                             <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <div class=" form-floating">
+                                    <input type="text" class="form-control" placeholder="First Name" name="Fname">
+                                    <label for="Fname" class="form-label">First Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <div class=" form-floating">
+                                    <input type="text" class="form-control" placeholder="Last Name" name="Lname">
+                                    <label for="Lname" class="form-label">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="">
+                            <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                                 <div class="form-floating">
                                     <input type="password" class="form-control" placeholder="Password" name="password">
@@ -84,7 +103,16 @@ include "./conectdb.php";
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <div class=" form-floating">
+                                    <input type="text" class="form-control" placeholder="Tel." name="tel">
+                                    <label for="Tel" class="form-label">Tel.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="role" value="user">
                         <div class="row gx-4">
                             <div class="col-md-6 ">
                                 <button type="submit" class="btn btn-primary me-1 rounded-pill"><i class="fa-solid fa-arrow-right"></i> Register</button>
@@ -93,7 +121,7 @@ include "./conectdb.php";
                                 <a href="<?php echo $url ?>index.php" role="button" class="btn btn-danger rounded-pill"><i class="fa-solid fa-xmark"></i> Cancal</a>
                             </div>
                         </div>
-                        <p class="d-block text text-center mt-5 ">
+                        <p class="d-block text text-center mt-3 ">
                             มีบัญชีอยู่แล้วหรอ? <a href="<?php echo $url;?>loginUser.php" class="text-decoration-none">ลงชื่อเข้าใช้</a>เลย.
                         </p>
 
@@ -102,7 +130,7 @@ include "./conectdb.php";
 
             </div>
 
-            <div class="col-lg-4 col-md-3">
+            <div class="col-lg-4 col-md-6">
 
             </div>
         </div>

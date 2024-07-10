@@ -6,6 +6,10 @@
     $_POST['email'] ? $email = $_POST['email'] : header("Location:../register.php");
     $_POST['password'] ? $pass = $_POST['password'] : header("Location:../register.php");
     $_POST['cfpassword'] ? $cfpass = $_POST['cfpassword'] : header("Location:../register.php");
+    $_POST['Fname'] ? $Fname = $_POST['Fname'] : header("Location:../register.php");
+    $_POST['Lname'] ? $Lname = $_POST['Lname'] : header("Location:../register.php");
+    $_POST['tel'] ? $Tel = $_POST['tel'] : header("Location:../register.php");
+    $_POST['role'] ? $role = $_POST['role'] : header("Location:../register.php");
     $encrptPassword = password_hash($pass,PASSWORD_DEFAULT);
 
     $usercheck = $conn->prepare("SELECT * FROM useraccount WHERE username = (?)");
@@ -26,8 +30,8 @@
         header("Location: ../register.php");
     }elseif (password_verify($cfpass,$encrptPassword)) {
         
-        $sql = $conn->prepare("INSERT INTO useraccount (username,email,password) VALUES (?,?,?)");
-        $sql->execute([$username,$email,$encrptPassword]);
+        $sql = $conn->prepare("INSERT INTO useraccount (username,email,password,firstname,lastname,tel,role) VALUES (?,?,?,?,?,?,?)");
+        $sql->execute([$username,$email,$encrptPassword,$Fname,$Lname,$Tel,$role]);
         $_SESSION["success"] = "Successful Register";
         header("Location: ../register.php");
     }else {
