@@ -112,7 +112,9 @@ include "./conectdb.php";
                                 </div>
                             </div>
                         </div>
+                        <!-- กำหนดระดับการเข้าถึง -->
                         <input type="hidden" name="role" value="user">
+                        <!-- ปุ่มไปหน้าอื่นๆ -->
                         <div class="row gx-4">
                             <div class="col-md-6 ">
                                 <button type="submit" class="btn btn-primary me-1 rounded-pill"><i class="fa-solid fa-arrow-right"></i> Register</button>
