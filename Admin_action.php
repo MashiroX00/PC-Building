@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?php echo $url;?>css/admin.css">
 </head>
 <body>
-<?php include './Navheader.php';?>
+<?php include './proceed/navdisplay.php';?>
 <?php include './packlink2.php';?>
 </body>
 </html>

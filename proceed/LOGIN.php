@@ -11,11 +11,15 @@
     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
         $user = $row["username"];
         $dbpassword = $row["password"];
+        $role = $row["role"];
       }
     if ($user == $username) {
         if (password_verify($pass,$dbpassword)) {
             $_SESSION["success"] = "Login Success!";
-            header("Location:".$url."loginUser.php");
+            $cookie_name = $role;
+            $cookie_value = $user;
+            $_SESSION[$role] = $user;
+            header("Location:".$url."index.php");
         }else {
             $_SESSION["error"] = "Login failed! Username or password is incorrect.";
             header("Location:".$url."loginUser.php");

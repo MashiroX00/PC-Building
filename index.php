@@ -1,5 +1,6 @@
 <?php
-include "./conectdb.php"
+session_start();
+include "./conectdb.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ include "./conectdb.php"
 
 <body>
   <?php
-  include "./Navheader.php"
+  include "./proceed/navdisplay.php";
   ?>
 
   <div class="container text-center menu">

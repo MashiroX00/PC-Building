@@ -19,7 +19,7 @@
 </head>
 <body>
     <?php
-        include './Navheader.php';
+        include "./proceed/navdisplay.php";
     ?>
     <p class="fs-3 text text-center" style="margin-bottom: -13rem;">Choose Gamemode</p>
     <div class="container d-flex justify-content-center align-items-center min-vh-100" style="margin-top: -100px;">

@@ -19,7 +19,7 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
 </head>
 
 <body>
-    <?php include './Navheader.php' ?>
+    <?php include "./proceed/navdisplay.php"; ?>
     <div class="container">
         <div class="row">
             <div class="col-4 col-sm-12">

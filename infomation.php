@@ -1,4 +1,5 @@
 <?php
+session_start();
 include './conectdb.php';
 ?>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ include './conectdb.php';
 
 <body>
     <?php
-    include './Navheader.php'
+    include "./proceed/navdisplay.php";
     ?>
     <div class="container">
         <div class="card mb-3 mt-3">
