@@ -4,3 +4,4 @@
   <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/brands.css">
   <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/solid.css">
   <link rel="stylesheet" href="<?php echo $url; ?>font.css">
+  <link rel="stylesheet" href="<?php echo $url;?>css/nav.css">

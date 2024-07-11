@@ -1,6 +1,7 @@
 <?php
 session_start();
 include './conectdb.php';
+include './proceed/permission.php';
 $query = $conn->query("SELECT * FROM item");
 $query->execute();
 $data = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -20,7 +21,7 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
 
 <body>
     <?php include "./proceed/navdisplay.php"; ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-4 col-sm-12">
                 <h3 class="text mb-3">Welcome {user} to item management.</h3>
@@ -122,7 +123,7 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
                                         <td><?php echo $Data['item_detail']; ?></td>
                                         <td><?php echo $Data['item_group']; ?></td>
                                         <td>
-                                            <form method="post" action="<?php echo $url ?>/editproduct.php" style="display: inline;">
+                                            <form method="post" action="<?php echo $url ?>/edititem.php" style="display: inline;">
                                                 <input name="id" type="hidden" value="<?php echo $Data['item_id']; ?>">
                                                 <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button>
                                             </form>

@@ -9,6 +9,7 @@
     $data->execute([$username]);
 
     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
+        $userid = $row['id'];
         $user = $row["username"];
         $dbpassword = $row["password"];
         $role = $row["role"];
@@ -19,6 +20,9 @@
             $cookie_name = $role;
             $cookie_value = $user;
             $_SESSION[$role] = $user;
+            $sql = "INSERT INTO loggeruser (user_id,username,role)VALUES (?,?,?)";
+            $query = $conn->prepare($sql);
+            $query->execute([$userid,$username,$role]);
             header("Location:".$url."index.php");
         }else {
             $_SESSION["error"] = "Login failed! Username or password is incorrect.";
