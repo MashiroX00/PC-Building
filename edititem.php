@@ -56,6 +56,7 @@ if ($_POST['id']) { $id = $_POST['id']; }else {
                         <span class="input-group-text"><i class="fa-solid fa-box-archive"></i></span>
                         <div class="form-floating">
                             <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled name="id" value="<?php echo $id?>">
+                            <input class="form-control" type="hidden" placeholder="Disabled input" aria-label="Disabled input example" name="id" value="<?php echo $id?>">
                             <label for="id" class="form-label">Item id</label>
                         </div>
                     </div>
@@ -76,8 +77,7 @@ if ($_POST['id']) { $id = $_POST['id']; }else {
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-list"></i></span>
                         <div class="form-floating">
-                            <select class="form-select" id="tag" aria-label="Tag" name="group" default="<?php echo $ItemTag?>">
-                                <option disabled selected >Choose Tag</option>
+                            <select class="form-select" id="tag" aria-label="Tag" name="group">
                                 <option value="ram">Ram</option>
                                 <option value="cpu">Cpu</option>
                                 <option value="mainboard">Mainboard</option>
@@ -88,7 +88,7 @@ if ($_POST['id']) { $id = $_POST['id']; }else {
                         </div>
                     </div>
                     <h4 class="text-white">Image:</h4>
-                    <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($ItemImage) . '" alt ="Uploded images" class="mb-3" style="width: 100px; ">'; ?>
+                    <img src="<?php echo $Data['item_picture']?>" alt="" width="150px" class="mb-3">
                     <div class="input-group mb-3">
                     
                         <span class="input-group-text"><i class="fa-solid fa-image"></i></span>

@@ -113,7 +113,7 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
                                             <?php echo $Data['item_id'] ?>
                                         </td>
                                         <td><?php if (!empty($Data['item_picture'])) : ?>
-                                                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($Data['item_picture']) . '" alt ="Uploded images" style="width: 100px;">'; ?>
+                                                <img src="<?php echo $Data['item_picture']?>" alt="" width="100px" >
                                             <?php else : ?>
                                                 <img src="<?php echo $url; ?>/assets/img/unkown.png" alt="" style="width: 100px;">
                                             <?php endif; ?>
@@ -123,11 +123,11 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
                                         <td><?php echo $Data['item_detail']; ?></td>
                                         <td><?php echo $Data['item_group']; ?></td>
                                         <td>
-                                            <form method="post" action="<?php echo $url ?>/edititem.php" style="display: inline;">
+                                            <form method="post" action="<?php echo $url ?>edititem.php" style="display: inline;">
                                                 <input name="id" type="hidden" value="<?php echo $Data['item_id']; ?>">
                                                 <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button>
                                             </form>
-                                            <form method="post" action="<?php echo $url ?>/process/deleteproduct.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['item_name']; ?>?');">
+                                            <form method="post" action="<?php echo $url ?>proceed/delete.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['item_name']; ?>?');">
                                                 <input type="hidden" value="<?php echo $Data['item_id'] ?> " name="id">
                                                 <!-- need to return confirm value to delete -->
                                                 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-1"></i>Delete</button>
@@ -137,8 +137,8 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
                                 <?php }; ?>
                             <?php else : ?>
                                 <tr>
-                                    <td colspan="4">
-                                        <h4 class="text-center text-warning">ไม่พบข้อมูลสินค้าในระบบ</h4>
+                                    <td colspan="6">
+                                        <h4 class="text-center text-warning">ไม่พบข้อมูลอุปกรณ์ในระบบ</h4>
                                     </td>
                                 </tr>
                             <?php endif; ?>
