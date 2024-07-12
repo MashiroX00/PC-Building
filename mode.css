@@ -16,6 +16,9 @@
   opacity: 80%;
 }
 body {
+  background-image: url(./src/assets/bluemoon\ Game.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   background-color: #1d0c1b !important;
 
 }

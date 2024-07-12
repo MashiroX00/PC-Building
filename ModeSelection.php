@@ -36,7 +36,7 @@ session_start();
         <p class="card-text text-center">โหมดธรรมดา สามารถประกอบคอมพิวเตอร์ได้ตามต้องการโดยไม่จำกัดเวลา</p>
       </div>
     </div>
-    <a href="" class="d-flex justify-content-center align-items-center"><img src="<?php echo $url;?>src/icon/circle-question-regular.svg" alt="" width="23px" height="23px" data-bs-toggle="tooltip" data-bs-placement="top" title="help"></a>
+    
   </div>
   <div class="col">
     <div class="card border-0">
@@ -49,7 +49,7 @@ session_start();
         <p class="card-text text-center">โหมดจับเวลา เป็นโหมดที่จะจับเวลาผู้เล่นและผู้เล่นจะต้องหาชิ้นส่วนที่หายไปของคอมพิวเตอร์ภายใน 2 นาที</p>
       </div>
     </div>
-    <a href="" class="d-flex justify-content-center align-items-center"><img src="<?php echo $url;?>src/icon/circle-question-regular.svg" alt="" width="23px" height="23px" data-bs-toggle="tooltip" data-bs-placement="top" title="help"></a>
+    
   </div>
   <div class="col">
     <div class="card border-0">
@@ -63,7 +63,7 @@ session_start();
       </div>
       
     </div>
-    <a href="" class="d-flex justify-content-center align-items-center"><img src="<?php echo $url;?>src/icon/circle-question-regular.svg" alt="" width="23px" height="23px" data-bs-toggle="tooltip" data-bs-placement="top" title="help"></a>
+    
   </div>
 </div>
     </div>

@@ -36,7 +36,7 @@ $rowcount = $sql->rowCount();
                     <div class="card-body">
                         <h5 class="card-title">User Management <i class="fa-solid fa-user-pen"></i></h5>
                         <p class="card-text">View Delete or Edit user.</p>
-                        <button type="button" class="btn btn-primary">View</button>
+                        <a href="<?php echo $url;?>Usermanage.php" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>

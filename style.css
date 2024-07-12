@@ -9,14 +9,14 @@ body {
     background-repeat: no-repeat;
     background-color: #1d0c1b !important;
 }
-.menu {
-    margin-top: 75vh;
-}
 .moreinfo {
-    margin-top: 35vh;
+    margin-top: 10vh;
     margin-bottom: 10vh;
 }
 .card {
     box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(102, 94, 94, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     
+}
+.back {
+    background-image: url(./src/assets/Play\ Button.png);
 }

@@ -8,13 +8,21 @@ $Itemgroup = $_POST['group'];
 $ItemImageName =  $_FILES['image']['name'];
 $ItemImageTmp = $_FILES['image']['tmp_name'];
 
+$sql = "SELECT * FROM item WHERE item_id = (?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($data as $Data) {
+        $ItemImage = $Data['item_picture'];
+    }
+
 if (empty($ItemImageTmp)) {
     $query = $conn->prepare("UPDATE item SET item_name=?,item_detail=?,item_group=? WHERE item_id=?");
     $query->execute([$itemName, $detail, $Itemgroup, $id]);
     $_SESSION['success'] = "Item saved success";
         header("Location: $url"."itemaddform.php");
 } else {
-    @unlink("../uplaods/" . $itemName);
+    @unlink("../" . $ItemImage);
     $folder = "../uploads/";
     $targetFile = $folder . basename($ItemImageName);
     $folder1 = "uploads/";

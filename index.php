@@ -23,42 +23,44 @@ include "./conectdb.php";
   include "./proceed/navdisplay.php";
   ?>
 
-  <div class="container text-center menu">
-    <div class="row">
-      <div class="col">
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <a href="<?php $url; ?>ModeSelection.php" class="btn btn-primary btn-lg">Start Game</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <a href="<?php $url ?>" class="btn btn-secondary btn-lg">View PC</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container moreinfo">
+<div class="container-fluid mt-5">
   <div class="row">
+    <div class="col-lg-4 col-md-12">
 
-    <div class="col-12">
-    <div class="card mb-3 rounded-3" style="width: 80em; height: 300px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">คอมพิวเตอร์ คืออะไร?</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <a href="<?php echo $url;?>infomation.php" class="btn btn-primary text-end">อ่านเพิ่มเติม</a>
+
+    <div class="col-lg-4 col-md-6 text-center mt-5">
+    <a href="<?php echo$url;?>ModeSelection.php" class="btn btn-primary mt-5 mb-3" style="width: 200px;">Start Game</a><br>
+    <a href="<?php echo$url;?>ModeSelection.php" class="btn btn-secondary" style="width: 200px;">View Career</a> 
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      
+    </div>
+  </div>
+</div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-4 col-sm-3"></div>
+      <div class="col-4 col-sm-6">
+        <div class="card mb-3 rounded-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">คอมพิวเตอร์ คืออะไร?</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="<?php echo $url; ?>infomation.php" class="btn btn-primary text-end mb-2">อ่านเพิ่มเติม</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="col-4 col-sm-6"></div>
     </div>
   </div>
-</div>
-    </div>
-
-  </div>
-</div>
   <script src="<?php echo $url; ?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
   <script src="<?php echo $url; ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
