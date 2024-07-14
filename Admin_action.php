@@ -45,7 +45,7 @@ $rowcount = $sql->rowCount();
                     <div class="card-body">
                         <h5 class="card-title">Infomation Management <i class="fa-solid fa-circle-info"></i></h5>
                         <p class="card-text">View Delete or Edit Infomation.</p>
-                        <button type="button" class="btn btn-primary">View</button>
+                        <a href="<?php echo $url;?>infomationAdd.php" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
