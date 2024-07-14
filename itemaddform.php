@@ -2,10 +2,20 @@
 session_start();
 include './conectdb.php';
 include './proceed/permission.php';
-$query = $conn->query("SELECT * FROM item");
+$pagelimit = 5;
+isset($_GET['page']) ? $page = $_GET['page'] : $page = 1;
+$start = ($page - 1) * $pagelimit;
+
+$query = $conn->query("SELECT * FROM item LIMIT {$start},{$pagelimit}");
 $query->execute();
 $data = $query->fetchAll(PDO::FETCH_ASSOC);
-$rows = $conn->query("SELECT * FROM item")->fetchColumn();
+
+$sql1 = "SELECT * FROM item";
+$stmt = $conn->prepare($sql1);
+$stmt->execute();
+$row = $conn->query($sql1)->fetchColumn();
+$rows = $stmt->rowCount();
+$totalPage = ceil($rows / $pagelimit);
 
 ?>
 <!DOCTYPE html>
@@ -106,7 +116,7 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($rows > 0) : ?>
+                            <?php if ($row > 0) : ?>
                                 <?php foreach ($data as $Data) { ?>
                                     <tr>
                                         <td>
@@ -145,11 +155,28 @@ $rows = $conn->query("SELECT * FROM item")->fetchColumn();
 
                         </tbody>
 
-                        <caption>
-                            Captions of the table
+                        <caption class="text-white">
+                            ข้อมูลของ item ทั้งหมดในระบบ
                         </caption>
 
                     </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="<?php $url?>itemaddform.php?page=1" aria-label="Previous" class="page-link text-black">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
+                                <li class="page-item"><a href="<?php $url?>itemaddform.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
+                            <?php } ?>
+                            <li class="page-item">
+                                <a href="<?php $url?>itemaddform.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
