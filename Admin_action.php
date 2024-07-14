@@ -66,15 +66,6 @@ $rowcount = $sql->rowCount();
                     </div>
                 </div>
             </div>
-            <div class="col-4 col-sm-3 mb-3">
-                <div class="card h-100 bg-transparent text-white">
-                    <div class="card-body">
-                        <h5 class="card-title">User Management <i class="fa-solid fa-user-pen"></i></h5>
-                        <p class="card-text">View Delete or Edit user.</p>
-                        <button type="button" class="btn btn-primary">View</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <?php include './packlink2.php'; ?>
