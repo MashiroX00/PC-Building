@@ -6,7 +6,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $myDB = "pcbuilding";
-
+date_default_timezone_set('Asia/Bangkok'); 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$myDB", $username, $password);
   // set the PDO error mode to exception
