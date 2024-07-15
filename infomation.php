@@ -1,6 +1,11 @@
 <?php
 session_start();
 include './conectdb.php';
+$sql = "SELECT * FROM infomationdata";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$query = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = $conn->query($sql)->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,24 +25,42 @@ include './conectdb.php';
     include "./proceed/navdisplay.php";
     ?>
     <div class="container">
-        <div class="card mb-3 mt-3">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="row">
+            <?php if ($rows > 0) : ?>
+        <?php foreach ($query as $Data) {?>
+            <?php 
+                $timestamp = $Data['timeUpdate'];
+                $unixTime = strtotime($timestamp);
+                $timeElapsed = time() - $unixTime;
+                if ($timeElapsed < 60) {
+                    $timeDisplay = $timeElapsed . " วินาที";
+                } elseif ($timeElapsed < 3600) {
+                    $timeDisplay = floor($timeElapsed / 60) . " นาที";
+                } elseif ($timeElapsed < 86400) {
+                    $timeDisplay = floor($timeElapsed / 3600) . " ชั่วโมง";
+                } else {
+                    $timeDisplay = floor($timeElapsed / 86400) . " วัน";
+                }
+                ?>
+            <div class="col-4 col-lg-3">
+                <div class="card mb-3 mt-3 h-100">
+            <img src="<?php echo $Data['picture']?>" class="card-img-top minimg" alt="...">
             <div class="card-body">
-                <h5 class="card-title">คอมพิวเตอร์ คืออะไร?</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title"><?php echo $Data['head']?></h5>
+                <p class="card-text"><?php echo $Data['content']?></p>
+                <p class="card-text"><small class="text-muted">Last updated <?php echo $timeDisplay;?> ที่แล้ว</small></p>
             </div>
         </div>
-        <div class="card mb-3 mt-3">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">แรม(Ram) คืออะไร?</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
+            <?php }?>
+        <?php else :?>
+            <div class="alert alert-warning">
+                <p>ไม่พบข้อมูล</p>
+                    </div>
+            <?php endif;?>
         </div>
+        
     </div>
-
     <?php include './packlink2.php' ?>
 </body>
 

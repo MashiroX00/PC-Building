@@ -70,47 +70,47 @@ foreach ($data as $Data) {
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-font"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="username" value="<?php echo $username ?>">
                             <label for="username" class="form-label">Username</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
                         <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="email" value="<?php echo $email ?>">
                             <label for="username" class="form-label">Email</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-list"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
                         <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="Firstname" value="<?php echo $firstName ?>">
                             <label for="tag">Firstname</label>
                         </div>
-                        <span class="input-group-text"><i class="fa-solid fa-list"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
                         <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="Lastname" value="<?php echo $lastName ?>">
                             <label for="tag">Lastname</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
                         <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="tel" value="<?php echo $tel ?>">
                             <label for="username" class="form-label">Tel</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-id-badge"></i></span>
                         <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="Role" value="<?php echo $role ?>" disabled>
                             <label for="username" class="form-label">Role</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-user-clock"></i></span>
                         <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="date" value="<?php echo $date ?>" disabled>
                             <label for="username" class="form-label">Register Time</label>
