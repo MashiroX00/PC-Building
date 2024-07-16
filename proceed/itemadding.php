@@ -1,44 +1,55 @@
 <?php
 session_start();
 include '../conectdb.php';
+$url = $url;
 
-$_POST['itemName'] ? $itemName = $_POST['itemName'] : header("Location: $url" . "itemaddform.php");
-$_POST['detail'] ? $detail = $_POST['detail'] : header("Location: $url" . "itemaddform.php");
-$_POST['group'] ? $Itemgroup = $_POST['group'] : header("Location: $url" . "itemaddform.php");
-$_FILES['image']['name'] ? $ItemImageName =  $_FILES['image']['name'] : header("Location: $url" . "itemaddform.php");
-$_FILES['image']['tmp_name'] ? $ItemImageTmp = $_FILES['image']['tmp_name'] : header("Location: $url" . "itemaddform.php");
-$stat = 1;
+$_POST['itemName'] ? $itemName = $_POST['itemName'] : header("Location: {$url}itemaddform.php");
+$_POST['detail'] ? $detail = $_POST['detail'] : header("Location: {$url}itemaddform.php");
+$_POST['group'] ? $itemGroup = $_POST['group'] : header("Location: {$url}itemaddform.php");
+
+if (empty($_FILES['image']['name'])) {
+    $_SESSION['error'] = "Image is required";
+    header("Location: {$url}itemaddform.php");
+    exit;
+}
+
+$originalItemImageName = $_FILES['image']['name'];
+$itemImageTmp = $_FILES['image']['tmp_name'];
+
+$baseName = pathinfo($originalItemImageName, PATHINFO_FILENAME);
+$extension = pathinfo($originalItemImageName, PATHINFO_EXTENSION);
+
+// เริ่มต้นตัวเลขต่อท้าย
+$counter = 1;
+$itemImageName = $originalItemImageName;
+
+// ตรวจสอบชื่อไฟล์ซ้ำในโฟลเดอร์ uploads
 $folder = "../uploads/";
-$targetFile = $folder . basename($ItemImageName);
-$folder1 = "uploads/";
-$targetFile1 = $folder1 . basename($ItemImageName);
-$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-if (file_exists($targetFile)) {
-    $_SESSION['error'] = "Sorry, file already exists.";
-    header("Location:" . $url . "itemaddform.php");
-    $stat = 0;
+while (file_exists($folder . $itemImageName)) {
+    $itemImageName = $baseName . "_" . $counter . "." . $extension;
+    $counter++;
 }
 
-if (
-    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif"
-) {
-    $_SESSION['error'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $stat = 0;
-    header("Location:" . $url . "itemaddform.php");
+$targetFile = $folder . $itemImageName;
+$folder1 = "uploads/";
+$targetFile1 = $folder1 . $itemImageName; // ใช้ชื่อไฟล์ที่ไม่ซ้ำ
+
+$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+    $_SESSION['error'] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+    header("Location: {$url}itemaddform.php");
+    exit;
 }
-if ($stat == 0) {
+
+
+if (move_uploaded_file($itemImageTmp, $targetFile)) {
+    $sql = $conn->prepare("INSERT INTO item (item_name, item_detail, item_group, item_picture) VALUES (?, ?, ?, ?)");
+    $sql->execute([$itemName, $detail, $itemGroup, $targetFile1]); // ใช้ชื่อไฟล์ที่ไม่ซ้ำ
+    $_SESSION['success'] = "Product saved successfully";
+} else {
     $_SESSION['error'] = "Sorry, Failed to uploaded.";
-    header("Location" . $url . "itemaddform.php");
-}else {
-    if (move_uploaded_file($ItemImageTmp,$targetFile)) {
-        $sql = $conn->prepare("INSERT INTO item (item_name,item_detail,item_group,item_picture) VALUES (?,?,?,?)");
-        $sql->execute([$itemName, $detail, $Itemgroup, $targetFile1]);
-        $_SESSION['success'] = "Product saved success";
-        header("Location: $url" . "itemaddform.php");
-    }else {
-        $_SESSION['error'] = "Sorry, Failed to uploaded.";
-        header("Location" . $url . "itemaddform.php");
-    }
 }
+
+header("Location: {$url}itemaddform.php");
+exit();
 ?>
