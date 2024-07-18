@@ -10,7 +10,11 @@ session_start();
     <title>Mode Selection</title>
     <link rel="stylesheet" href="<?php echo $url;?>mode.css">
     <?php include './packlink.php'?>
-
+    <style>
+      .navbar {
+    box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+}
+    </style>
 </head>
 <body>
     <?php
