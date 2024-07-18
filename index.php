@@ -25,8 +25,8 @@ include "./conectdb.php";
     </div>
 
     <div class="col-lg-4 col-md-6 text-center mt-5">
-    <a href="<?php echo$url;?>ModeSelection.php" class="btn btn-primary mt-5 mb-3" style="width: 200px;">Start Game</a><br>
-    <a href="<?php echo$url;?>ModeSelection.php" class="btn btn-secondary" style="width: 200px;">View Career</a> 
+    <a href="<?php echo$url;?>ModeSelection.php" class="btn mt-5 mb-3 imgHover" ><img src="<?php echo$url;?>src/assets/Start.png" style="width: 350px;"></a><br>
+    <a href="<?php echo$url;?>ModeSelection.php" class="btn imgHover"><img src="<?php echo$url;?>src/assets/View_PC.png" style="width: 350px;"></a> 
     </div>
 
     <div class="col-lg-4 col-md-6">

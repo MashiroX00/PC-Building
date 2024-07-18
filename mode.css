@@ -1,5 +1,5 @@
 .card-img-top {
-    filter: blur(2px);
+    filter: blur(0px);
   }
 .card-img-overlay img {
     position: relative;
@@ -12,8 +12,8 @@
 .bg-img {
   
   object-fit: cover;
-  background-color: rgb(0, 0, 0);
-  opacity: 80%;
+  background-color: rgb(255, 255, 255);
+  opacity: 90%;
 }
 body {
   background-image: url(./src/assets/bluemoon\ Game.jpg);
