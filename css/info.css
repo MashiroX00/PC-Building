@@ -10,7 +10,8 @@ body {
 .card {
     box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px, rgba(243, 243, 243, 0.3) 0px 30px 60px -30px;
 }
-.minimg {
-    max-height: 170px;
+.minimg img{
+    width: 450px;
+    height: 350px;
     object-fit: cover;
 }

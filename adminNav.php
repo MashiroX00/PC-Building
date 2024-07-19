@@ -26,7 +26,7 @@
                         <div class="modal-body">
                             <div class="d-grid gap-2">
                                 <a href="<?php echo $url; ?>index.php" role="button" class="btn btn-outline-primary popover-test" title="Go to Manage Account Page" data-bs-content="">Home</a>
-                                <a href="#" role="button" class="btn btn-outline-info popover-test" title="Go to Manage Account Page" data-bs-content="">Accout info</a>
+                                <a href="<?php echo $url; ?>Accountinfo.php" role="button" class="btn btn-outline-info popover-test" title="Go to Manage Account Page" data-bs-content="">Accout info</a>
                                 <a href="<?php echo $url; ?>proceed/logout.php" role="button" class="btn btn-outline-danger popover-test" title="Destroy Session" data-bs-content="">Logout</a>
                                 <a href="<?php echo $url; ?>Admin_action.php" role="button" class="btn btn-outline-warning popover-test" title="Go to Manage Account Page" data-bs-content="">Admin Management</a>
                                 <a href="<?php echo $url; ?>test.php" role="button" class="btn btn-outline-warning popover-test" title="Go to Manage Account Page" data-bs-content="">TEST CLASS</a>

@@ -14,7 +14,7 @@ $rows = $conn->query($sql)->fetchColumn();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ชิ้นส่วนต่างๆของคอมพิวเตอร์</title>
-    <link rel="stylesheet" href="<?php echo $url;?>css/info.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>css/info.css">
     <?php
     include './packlink.php'
     ?>
@@ -24,42 +24,48 @@ $rows = $conn->query($sql)->fetchColumn();
     <?php
     include "./proceed/navdisplay.php";
     ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <?php if ($rows > 0) : ?>
-        <?php foreach ($query as $Data) {?>
-            <?php 
-                $timestamp = $Data['timeUpdate'];
-                $unixTime = strtotime($timestamp);
-                $timeElapsed = time() - $unixTime;
-                if ($timeElapsed < 60) {
-                    $timeDisplay = $timeElapsed . " วินาที";
-                } elseif ($timeElapsed < 3600) {
-                    $timeDisplay = floor($timeElapsed / 60) . " นาที";
-                } elseif ($timeElapsed < 86400) {
-                    $timeDisplay = floor($timeElapsed / 3600) . " ชั่วโมง";
-                } else {
-                    $timeDisplay = floor($timeElapsed / 86400) . " วัน";
-                }
-                ?>
-            <div class="col-4 col-lg-3">
-                <div class="card mb-3 mt-3 h-100">
-            <img src="<?php echo $Data['picture']?>" class="card-img-top minimg" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $Data['head']?></h5>
-                <p class="card-text"><?php echo $Data['content']?></p>
-                <p class="card-text"><small class="text-muted">Last updated <?php echo $timeDisplay;?> ที่แล้ว</small></p>
-            </div>
-        </div>
-            </div>
-            <?php }?>
-        <?php else :?>
-            <div class="alert alert-warning">
-                <p>ไม่พบข้อมูล</p>
+                <?php foreach ($query as $Data) { ?>
+                    <?php
+                    $timestamp = $Data['timeUpdate'];
+                    $unixTime = strtotime($timestamp);
+                    $timeElapsed = time() - $unixTime;
+                    if ($timeElapsed < 60) {
+                        $timeDisplay = $timeElapsed . " วินาที";
+                    } elseif ($timeElapsed < 3600) {
+                        $timeDisplay = floor($timeElapsed / 60) . " นาที";
+                    } elseif ($timeElapsed < 86400) {
+                        $timeDisplay = floor($timeElapsed / 3600) . " ชั่วโมง";
+                    } else {
+                        $timeDisplay = floor($timeElapsed / 86400) . " วัน";
+                    }
+                    ?>
+                    <div class="col-4 col-lg-11 mb-2">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4 minimg">
+                                    <img src="<?php echo $Data['picture']?>" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $Data['head']?></h5>
+                                        <p class="card-text"><?php echo $Data['content']?></p>
+                                        <p class="card-text"><small class="text-muted">แก้ไขล่าสุดเมื่อ <?php echo $timeDisplay?></small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-            <?php endif;?>
+                <?php } ?>
+            <?php else : ?>
+                <div class="alert alert-warning">
+                    <p>ไม่พบข้อมูล</p>
+                </div>
+            <?php endif; ?>
         </div>
-        
+
     </div>
     <?php include './packlink2.php' ?>
 </body>

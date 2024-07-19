@@ -13,8 +13,8 @@ $query = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $sql1 = "SELECT * FROM infomationdata";
 $stmt1 = $conn->prepare($sql1);
 $stmt1->execute();
-$row = $conn->query($sql)->fetchColumn();
-$rows = $stmt->rowCount();
+$row = $conn->query($sql1)->fetchColumn();
+$rows = $stmt1->rowCount();
 $totalPage = ceil($rows/$pagelimit);
 ?>
 <!DOCTYPE html>

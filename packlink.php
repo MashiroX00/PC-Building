@@ -6,3 +6,4 @@
   <link rel="stylesheet" href="<?php echo $url; ?>font.css">
   <link rel="stylesheet" href="<?php echo $url;?>css/nav.css">
   <link rel="icon" href="<?php echo $url;?>src/assets/RapeeMEd2-removebg-preview (1).png">
+  <link rel="stylesheet" href="<?php echo $url; ?>css/srcollbar.css"> 
