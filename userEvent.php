@@ -2,6 +2,10 @@
 session_start();
 include './conectdb.php';
 include './proceed/permission.php';
+$mtclock = microtime();
+$mtclock = explode(" ",$mtclock);
+$mtclock = $mtclock[1] + $mtclock[0];
+$startTime = $mtclock;
 $pagelimit = 10;
 isset($_GET['page']) ? $page = $_GET['page'] : $page = 1;
 $start = ($page - 1) * $pagelimit;
@@ -100,6 +104,14 @@ $totalPage = ceil($rows / $pagelimit);
                 </div>
             </div>
         </div>
+        <?php
+        $mtclock = microtime();
+        $mtclock = explode(" ",$mtclock);
+        $mtclock = $mtclock[1] + $mtclock[0];
+        $endtime = $mtclock;
+        $totalPageLoadTime = ($endtime - $startTime);
+        echo "<p class='text-white'>หน้านี้ใช้เวลาโหลด {$totalPageLoadTime} วินาที</p>"  
+    ?>
     </div>
     <?php include './packlink2.php'; ?>
 </body>
