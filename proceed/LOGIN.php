@@ -17,8 +17,6 @@
     if ($user == $username) {
         if (password_verify($pass,$dbpassword)) {
             $_SESSION["success"] = "Login Success!";
-            $cookie_name = $role;
-            $cookie_value = $user;
             $_SESSION[$role] = $user;
             $sql = "INSERT INTO loggeruser (user_id,username,role)VALUES (?,?,?)";
             $query = $conn->prepare($sql);
