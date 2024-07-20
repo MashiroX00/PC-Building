@@ -12,6 +12,7 @@ foreach ($query as $data) {
 if ($role == "admin") {
     $_SESSION['error'] = "Delete user failed. Becuse this user is Admin.";
     header("Location:" . $url . "Usermanage.php");
+    exit;
 } else {
     $delete = "DELETE FROM useraccount WHERE id = (?)";
     $stmt1 = $conn->prepare($delete);
@@ -19,9 +20,11 @@ if ($role == "admin") {
     if ($stmt1) {
         $_SESSION['success'] = "Delete user successfully.";
         header("Location:" . $url . "Usermanage.php");
+        exit;
     } else {
         $_SESSION['error'] = "Delete user failed.";
         header("Location:" . $url . "Usermanage.php");
+        exit;
     }
 }
 
