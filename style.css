@@ -28,3 +28,7 @@ body {
     transition: 0.3s;
     scale: 1;
 }
+.imgslide {
+    height: 400px;
+    object-fit: cover;
+}
