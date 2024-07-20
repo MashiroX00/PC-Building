@@ -63,11 +63,11 @@ if ($username != "") {
     <div class="container mt-3">
         <div class="row">
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-4 col-sm-12">
 
             </div>
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-4 col-sm-6">
                 <h4 class="text-white">Account Infomation</h4>
                 <?php if ($username == "") { ?>
                     <div class="alert alert-danger">โปรด login ก่อนเข้าหน้า Account Infomation. <a href="<?php $url ?>loginUser.php">Login!</a></div>
@@ -120,7 +120,7 @@ if ($username != "") {
 
             </div>
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-4 col-sm-6">
                 <h4 class="text-white">Login Time</h4>
                 <div class="table-responsive mt-3">
                     <table class="table table-hover ">
