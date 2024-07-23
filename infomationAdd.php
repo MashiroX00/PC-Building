@@ -62,7 +62,7 @@ $totalPage = ceil($rows/$pagelimit);
                         <span class="input-group-text"><i class="fa-solid fa-font"></i></span>
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingInput" placeholder="header" name="Header">
-                            <label for="username" class="form-label">Header</label>
+                            <label for="floatingInput" class="form-label">Header</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">

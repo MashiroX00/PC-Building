@@ -57,22 +57,22 @@ $totalPage = ceil($rows / $pagelimit);
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-box-archive"></i></span>
                         <div class="form-floating">
-                            <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled name="id" value="">
-                            <label for="id" class="form-label">Item id</label>
+                            <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled name="id" value="" id="floatingInput1">
+                            <label for="floatingInput1" class="form-label">Item id</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-font"></i></span>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="Item" name="itemName">
-                            <label for="username" class="form-label">Item name</label>
+                            <input type="text" class="form-control" id="floatingInput2" placeholder="Item" name="itemName">
+                            <label for="floatingInput2" class="form-label">Item name</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                         <div class="form-floating">
-                            <textarea class="form-control" id="floatingInput" placeholder="details" name="detail"></textarea>
-                            <label for="username" class="form-label">Details</label>
+                            <textarea class="form-control" id="floatingInput3" placeholder="details" name="detail"></textarea>
+                            <label for="floatingInput3" class="form-label">Details</label>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -91,8 +91,8 @@ $totalPage = ceil($rows / $pagelimit);
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
                         <div class="form-floating">
-                            <input class="form-control form-control" id="formFileLg" type="file" name="image" accept="image/png, image/jpg, image/jpeg">
-                            <label for="username" class="form-label">Item picture</label>
+                            <input class="form-control" id="formFileLg" type="file" name="image" accept="image/png, image/jpg, image/jpeg" >
+                            <label for="formFileLg" class="form-label">Item picture</label>
                         </div>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end md-">
@@ -125,7 +125,7 @@ $totalPage = ceil($rows / $pagelimit);
                                         <td><?php if (!empty($Data['item_picture'])) : ?>
                                                 <img src="<?php echo $Data['item_picture']?>" alt="" width="100px" >
                                             <?php else : ?>
-                                                <img src="<?php echo $url; ?>/assets/img/unkown.png" alt="" style="width: 100px;">
+                                                <img src="<?php echo $url; ?>/assets/img/unkown.png" alt="" style="width: 100px;" loading="lazy">
                                             <?php endif; ?>
                                         </td>
                                         <td><?php echo $Data['item_name']; ?>
