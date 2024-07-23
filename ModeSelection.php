@@ -24,7 +24,7 @@ session_start();
     <div class="container d-flex justify-content-center align-items-center min-vh-100" style="margin-top: -100px;">
     <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
-    <div class="card border-0">
+    <div class="card border-0 h-100">
       <img src="<?php echo $url;?>src/assets/Game BG4.png" class="card-img-top bg-img" alt="background" width="416px" height="234px">
       <div class="card-img-overlay d-flex justify-content-center align-items-center" style="margin-top: -100px;">
         <a href=""><img src="<?php echo $url;?>src/icon/play-solid.svg" alt="play" width="50px" height="66px"></a>
@@ -37,7 +37,7 @@ session_start();
     
   </div>
   <div class="col">
-    <div class="card border-0">
+    <div class="card border-0 h-100">
       <img src="<?php echo $url;?>src/assets/Game BG2.png" class="card-img-top bg-img" alt="background" width="416px" height="234px">
       <div class="card-img-overlay d-flex justify-content-center align-items-center" style="margin-top: -100px;">
         <a href=""><img src="<?php echo $url;?>src/icon/hourglass-end-solid.svg" alt="play" width="50px" height="66px"></a>
@@ -50,7 +50,7 @@ session_start();
     
   </div>
   <div class="col">
-    <div class="card border-0">
+    <div class="card border-0 h-100">
       <img src="<?php echo $url;?>src/assets/Game BG3.png" class="card-img-top bg-img" alt="background" width="416px" height="234px">
       <div class="card-img-overlay d-flex justify-content-center align-items-center" style="margin-top: -100px;">
         <a href=""><img src="<?php echo $url;?>src/icon/desktop-solid.svg" alt="play" width="76px" height="69px"></a>
