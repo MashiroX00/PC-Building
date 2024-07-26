@@ -1,55 +1,73 @@
 <?php
 session_start();
-include '../conectdb.php';
-$url = $url;
+include __DIR__ . '/../conectdb.php';
 
-$_POST['itemName'] ? $itemName = $_POST['itemName'] : header("Location: {$url}itemaddform.php");
-$_POST['detail'] ? $detail = $_POST['detail'] : header("Location: {$url}itemaddform.php");
-$_POST['group'] ? $itemGroup = $_POST['group'] : header("Location: {$url}itemaddform.php");
+$name = $_POST['name'] ?? null;
+$ghz = $_POST['ghz'] ?? null;
+$socket = $_POST['socket'] ?? null;
+$pictureName = $_FILES['image']['name'] ?? null;
+$picturetmp = $_FILES['image']['tmp_name'] ?? null;
+$detail = $_POST['detail'] ?? null;
 
-if (empty($_FILES['image']['name'])) {
-    $_SESSION['error'] = "Image is required";
-    header("Location: {$url}itemaddform.php");
+// var_dump($name,$ghz,$socket,$pictureName,$detail);
+
+if (!$name || !$ghz || !$socket || !$pictureName || !$picturetmp || !$detail ===  null) {
+    $_SESSION['error'] = "Something went wrongs.";
+    header("Location: {$url}ItemAdd/Cpuadd.php");
     exit;
 }
 
-$originalItemImageName = $_FILES['image']['name'];
-$itemImageTmp = $_FILES['image']['tmp_name'];
+$pathfile = ROOT_DIR . "/uploads/";
+$basename = pathinfo($pictureName, PATHINFO_FILENAME);
+$extension = pathinfo($pictureName, PATHINFO_EXTENSION);
 
-$baseName = pathinfo($originalItemImageName, PATHINFO_FILENAME);
-$extension = pathinfo($originalItemImageName, PATHINFO_EXTENSION);
-
-// เริ่มต้นตัวเลขต่อท้าย
 $counter = 1;
-$itemImageName = $originalItemImageName;
-
-// ตรวจสอบชื่อไฟล์ซ้ำในโฟลเดอร์ uploads
-$folder = "../uploads/";
-while (file_exists($folder . $itemImageName)) {
-    $itemImageName = $baseName . "_" . $counter . "." . $extension;
+$itemName = $pictureName;
+while (file_exists($pathfile . $itemName)) {
+    $itemName = $basename . "_" . $counter . "." . $extension;
     $counter++;
 }
-
-$targetFile = $folder . $itemImageName;
-$folder1 = "uploads/";
-$targetFile1 = $folder1 . $itemImageName; // ใช้ชื่อไฟล์ที่ไม่ซ้ำ
-
+$targetFile = $pathfile . $itemName;
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
     $_SESSION['error'] = "Sorry, only JPG, JPEG & PNG files are allowed.";
-    header("Location: {$url}itemaddform.php");
+    header("Location: {$url}ItemAdd/Cpuadd.php");
     exit;
 }
-
-
-if (move_uploaded_file($itemImageTmp, $targetFile)) {
-    $sql = $conn->prepare("INSERT INTO item (item_name, item_detail, item_group, item_picture) VALUES (?, ?, ?, ?)");
-    $sql->execute([$itemName, $detail, $itemGroup, $targetFile1]); // ใช้ชื่อไฟล์ที่ไม่ซ้ำ
-    $_SESSION['success'] = "Product saved successfully";
-} else {
-    $_SESSION['error'] = "Sorry, Failed to uploaded.";
+switch ($socket) {
+    case "0" : $_SESSION['error'] = "Please Choose Socket."; header("Lcation: {$url}ItemAdd/Cpuadd.php");
+    break;
+    case "1" : $socketid = "AM4";
+    break;
+    case "2" : $socketid = "AM5";
+    break;
+    case "3" : $socketid = "LGA1700";
+    break;
+    case "4" : $socketid = "LGA1200";
+    break;
+    case "5" : $socketid = "LGA1151";
+    break;
+    case "6" : $socketid = "LGA1150";
+    break;
+    case "7" : $socketid = "LGA1155";
+    break;
+    case "8" : $socketid = "LGA1156";
+    break;
+    case "9" : $socketid = "LGA2066";
+    break;
+    default : $_SESSION['error'] = "Please Choose Socket."; header("Lcation: {$url}ItemAdd/Cpuadd.php");
+    break;
+} 
+if (move_uploaded_file($picturetmp,$targetFile)) {
+    $stmt = $conn->prepare("INSERT INTO cpu (cpu.Name,Socket,Ghz,picture,detail) VALUES (?,?,?,?,?)");
+    $stmt->execute([$name,$socketid,$ghz,$targetFile,$detail]);
+    $_SESSION['success'] = "Succesfully.";
+    header("Location: {$url}itemaddform.php");
+    exit;
+}else {
+    $_SESSION['error'] = "Cannot save Cpu item."; 
+    header("Lcation: {$url}ItemAdd/Cpuadd.php");
 }
 
-header("Location: {$url}itemaddform.php");
-exit();
+
 ?>

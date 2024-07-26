@@ -2,20 +2,7 @@
 session_start();
 include './conectdb.php';
 include './proceed/permission.php';
-$pagelimit = 5;
-isset($_GET['page']) ? $page = $_GET['page'] : $page = 1;
-$start = ($page - 1) * $pagelimit;
 
-$query = $conn->query("SELECT * FROM item LIMIT {$start},{$pagelimit}");
-$query->execute();
-$data = $query->fetchAll(PDO::FETCH_ASSOC);
-
-$sql1 = "SELECT * FROM item";
-$stmt = $conn->prepare($sql1);
-$stmt->execute();
-$row = $conn->query($sql1)->fetchColumn();
-$rows = $stmt->rowCount();
-$totalPage = ceil($rows / $pagelimit);
 
 ?>
 <!DOCTYPE html>
@@ -34,7 +21,7 @@ $totalPage = ceil($rows / $pagelimit);
     <div class="container mt-5">
         <div class="row">
             <div class="col-4 col-sm-12">
-                <h3 class="text mb-3">Welcome <?php echo $_SESSION['admin'];?> to item management.</h3>
+                <h3 class="text mb-3">Welcome <?php echo $_SESSION['admin']; ?> to item management.</h3>
                 <?php if (isset($_SESSION["success"])) { ?>
                     <div class="alert alert-success">
                         <?php
@@ -52,131 +39,47 @@ $totalPage = ceil($rows / $pagelimit);
                     </div>
                 <?php } ?>
             </div>
-            <div class="col-4 col-sm-12">
-                <form action="<?php echo $url; ?>proceed/itemadding.php" method="POST" enctype="multipart/form-data">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-box-archive"></i></span>
-                        <div class="form-floating">
-                            <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled name="id" value="" id="floatingInput1">
-                            <label for="floatingInput1" class="form-label">Item id</label>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-font"></i></span>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInput2" placeholder="Item" name="itemName">
-                            <label for="floatingInput2" class="form-label">Item name</label>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <div class="form-floating">
-                            <textarea class="form-control" id="floatingInput3" placeholder="details" name="detail"></textarea>
-                            <label for="floatingInput3" class="form-label">Details</label>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-list"></i></span>
-                        <div class="form-floating">
-                            <select class="form-select" id="tag" aria-label="Tag" name="group">
-                                <option value="ram">Ram</option>
-                                <option value="cpu">Cpu</option>
-                                <option value="mainboard">Mainboard</option>
-                                <option value="storage">Storage</option>
-                                <option value="psu">Power supply</option>
-                            </select>
-                            <label for="tag">Tag</label>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
-                        <div class="form-floating">
-                            <input class="form-control" id="formFileLg" type="file" name="image" accept="image/png, image/jpg, image/jpeg" >
-                            <label for="formFileLg" class="form-label">Item picture</label>
-                        </div>
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end md-">
-                        <button class="btn btn-primary me-md-2" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i>Save item</button>
-                        <button class="btn btn-danger" type="reset"><i class="fa-solid fa-xmark me-1"></i>Reset</button>
-                    </div>
-                </form>
+            <div class="col-4 col-sm-6">
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-microchip fa-xl"></i></span>
+                    <input type="text" class="form-control" placeholder="CPU" aria-label="Cpu" aria-describedby="basic-addon1" disabled>
+                    <a href="<?php echo $url ?>ItemAdd/Cpuadd.php" class="btn btn-warning"><span><i class="fa-solid fa-plus"></i> เพิ่ม</span></a>
+                </div>
+
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="basic-addon2"><img src="<?php echo $url ?>src/icon/motherboard.png" alt="" srcset="" style="width: 30px;"></span>
+                    <input type="text" class="form-control" placeholder="Mainboard" aria-label="mainboard" aria-describedby="basic-addon2" disabled>
+                    <a href="" class="btn btn-warning"><span><i class="fa-solid fa-plus"></i> เพิ่ม</span></a>
+                </div>
+
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-memory fa-lg"></i></span>
+                    <input type="text" class="form-control" placeholder="Ram" aria-label="ram" aria-describedby="basic-addon3" disabled>
+                    <a href="" class="btn btn-warning"><span><i class="fa-solid fa-plus"></i> เพิ่ม</span></a>
+                </div>
+
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-hard-drive fa-xl"></i></span>
+                    <input type="text" class="form-control" placeholder="Storage" aria-label="storage" aria-describedby="basic-addon2" disabled>
+                    <a href="" class="btn btn-warning"><span><i class="fa-solid fa-plus"></i> เพิ่ม</span></a>
+                </div>
+
+                <div class="input-group input-group-lg mb-3">
+                    <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-car-battery fa-xl"></i></span>
+                    <input type="text" class="form-control" placeholder="Power Supply" aria-label="psu" aria-describedby="basic-addon2" disabled>
+                    <a href="" class="btn btn-warning"><span><i class="fa-solid fa-plus"></i> เพิ่ม</span></a>
+                </div>
             </div>
             <div class="col-4 col-sm-12">
-                <div class="text"><h4>Item</h4></div>
-                <div class="table-responsive mt-3">
-                    <table class="table table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">details</th>
-                                <th scope="col">Tag</th>
-                                <th scope="col">action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($row > 0) : ?>
-                                <?php foreach ($data as $Data) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $Data['item_id'] ?>
-                                        </td>
-                                        <td><?php if (!empty($Data['item_picture'])) : ?>
-                                                <img src="<?php echo $Data['item_picture']?>" alt="" width="100px" >
-                                            <?php else : ?>
-                                                <img src="<?php echo $url; ?>/assets/img/unkown.png" alt="" style="width: 100px;" loading="lazy">
-                                            <?php endif; ?>
-                                        </td>
-                                        <td><?php echo $Data['item_name']; ?>
-                                        </td>
-                                        <td><?php echo $Data['item_detail']; ?></td>
-                                        <td><?php echo $Data['item_group']; ?></td>
-                                        <td>
-                                            <form method="post" action="<?php echo $url ?>edititem.php" style="display: inline;">
-                                                <input name="id" type="hidden" value="<?php echo $Data['item_id']; ?>">
-                                                <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button>
-                                            </form>
-                                            <form method="post" action="<?php echo $url ?>proceed/delete.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['item_name']; ?>?');">
-                                                <input type="hidden" value="<?php echo $Data['item_id'] ?> " name="id">
-                                                <!-- need to return confirm value to delete -->
-                                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-1"></i>Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php }; ?>
-                            <?php else : ?>
-                                <tr>
-                                    <td colspan="6">
-                                        <h4 class="text-center text-warning">ไม่พบข้อมูลอุปกรณ์ในระบบ</h4>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-
-                        </tbody>
-
-                        <caption class="text-white">
-                            ข้อมูลของ item ทั้งหมดในระบบ
-                        </caption>
-
-                    </table>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="<?php $url?>itemaddform.php?page=1" aria-label="Previous" class="page-link text-black">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
-                                <li class="page-item"><a href="<?php $url?>itemaddform.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
-                            <?php } ?>
-                            <li class="page-item">
-                                <a href="<?php $url?>itemaddform.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div>
+                    <p class="text text-white fs-3">See All Item</p>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a type="button" href="<?php $url?>itemaddingform.php" class="btn btn-outline-primary">Cpu</a>
+                    <a type="button" class="btn btn-outline-primary">Mainboard</a>
+                    <a type="button" class="btn btn-outline-primary">Ram</a>
+                    <a type="button" class="btn btn-outline-primary">Storage</a>
+                    <a type="button" class="btn btn-outline-primary">Power Supply</a>
                 </div>
             </div>
         </div>
