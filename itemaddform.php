@@ -20,7 +20,7 @@ include './proceed/permission.php';
     <?php include "./proceed/navdisplay.php"; ?>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-4 col-sm-12">
+            <div class="col-4 col-sm-8">
                 <h3 class="text mb-3">Welcome <?php echo $_SESSION['admin']; ?> to item management.</h3>
                 <?php if (isset($_SESSION["success"])) { ?>
                     <div class="alert alert-success">
