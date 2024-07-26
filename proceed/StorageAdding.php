@@ -3,17 +3,17 @@ session_start();
 include __DIR__ . '/../conectdb.php';
 
 $name = $_POST['name'] ?? null;
-$ghz = $_POST['ghz'] ?? null;
-$socket = $_POST['socket'] ?? null;
+$type = $_POST['type'] ?? null;
+$size = $_POST['size'] ?? null;
 $pictureName = $_FILES['image']['name'] ?? null;
 $picturetmp = $_FILES['image']['tmp_name'] ?? null;
 $detail = $_POST['detail'] ?? null;
 
-// var_dump($name,$ghz,$socket,$pictureName,$detail);
+// var_dump($name,$type,$Bus,$pictureName,$detail);
 
-if (!$name || !$ghz || !$socket || !$pictureName || !$picturetmp || !$detail ===  null) {
+if (!$name || !$type || !$pictureName || !$picturetmp || !$detail || !$size ===  null) {
     $_SESSION['error'] = "Something went wrongs.";
-    header("Location: {$url}ItemAdd/Cpuadd.php");
+    header("Location: {$url}ItemAdd/storage.php");
     exit;
 }
 
@@ -32,43 +32,35 @@ $targetFile = $pathfile . $itemName;
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
     $_SESSION['error'] = "Sorry, only JPG, JPEG & PNG files are allowed.";
-    header("Location: {$url}ItemAdd/Cpuadd.php");
+    header("Location: {$url}ItemAdd/storage.php");
     exit;
 }
-switch ($socket) {
-    case "0" : $_SESSION['error'] = "Please Choose Socket."; header("Lcation: {$url}ItemAdd/Cpuadd.php");
+
+switch ($type) {
+    case "0" : $_SESSION['error'] = "Please Choose RAM DDR."; header("Lcation: {$url}ItemAdd/storage.php");
     break;
-    case "1" : $socketid = "AM4";
+    case "1" : $typeid = "HDD";
     break;
-    case "2" : $socketid = "AM5";
+    case "2" : $typeid = "SSD SATA";
     break;
-    case "3" : $socketid = "LGA1700";
+    case "3" : $typeid = "Nvme SATA";
     break;
-    case "4" : $socketid = "LGA1200";
+    case "4" : $typeid = "Nvme M.2";
     break;
-    case "5" : $socketid = "LGA1151";
+    default : $_SESSION['error'] = "Please Choose RAM DDR."; header("Lcation: {$url}ItemAdd/storage.php");
     break;
-    case "6" : $socketid = "LGA1150";
-    break;
-    case "7" : $socketid = "LGA1155";
-    break;
-    case "8" : $socketid = "LGA1156";
-    break;
-    case "9" : $socketid = "LGA2066";
-    break;
-    default : $_SESSION['error'] = "Please Choose Socket."; header("Lcation: {$url}ItemAdd/Cpuadd.php");
-    break;
-} 
+}
+
 if (move_uploaded_file($picturetmp,$targetFile)) {
     $savedpath = "uploads/".$itemName;
-    $stmt = $conn->prepare("INSERT INTO cpu (cpu.Name,Socket,Ghz,picture,detail) VALUES (?,?,?,?,?)");
-    $stmt->execute([$name,$socketid,$ghz,$savedpath,$detail]);
+    $stmt = $conn->prepare("INSERT INTO storge (storge.Name, storge.Size,storge.Type,picture,detail) VALUES (?,?,?,?,?)");
+    $stmt->execute([$name,$size,$typeid,$savedpath,$detail]);
     $_SESSION['success'] = "Succesfully.";
     header("Location: {$url}itemaddform.php");
     exit;
 }else {
     $_SESSION['error'] = "Cannot save Cpu item."; 
-    header("Lcation: {$url}ItemAdd/Cpuadd.php");
+    header("Lcation: {$url}ItemAdd/storage.php");
 }
 
 

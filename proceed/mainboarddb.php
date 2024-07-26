@@ -3,17 +3,17 @@ session_start();
 include __DIR__ . '/../conectdb.php';
 
 $name = $_POST['name'] ?? null;
-$ghz = $_POST['ghz'] ?? null;
+$ddr = $_POST['DDR'] ?? null;
 $socket = $_POST['socket'] ?? null;
 $pictureName = $_FILES['image']['name'] ?? null;
 $picturetmp = $_FILES['image']['tmp_name'] ?? null;
 $detail = $_POST['detail'] ?? null;
 
-// var_dump($name,$ghz,$socket,$pictureName,$detail);
 
-if (!$name || !$ghz || !$socket || !$pictureName || !$picturetmp || !$detail ===  null) {
+
+if (!$name || !$ddr || !$socket || !$pictureName || !$picturetmp || !$detail ===  null) {
     $_SESSION['error'] = "Something went wrongs.";
-    header("Location: {$url}ItemAdd/Cpuadd.php");
+    header("Location: {$url}ItemAdd/Mainboardadd.php");
     exit;
 }
 
@@ -32,11 +32,25 @@ $targetFile = $pathfile . $itemName;
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
     $_SESSION['error'] = "Sorry, only JPG, JPEG & PNG files are allowed.";
-    header("Location: {$url}ItemAdd/Cpuadd.php");
+    header("Location: {$url}ItemAdd/Mainboardadd.php");
     exit;
 }
+
+switch ($ddr) {
+    case "0" : $_SESSION['error'] = "Please Choose RAM DDR."; header("Lcation: {$url}ItemAdd/Mainboardadd.php");
+    break;
+    case "1" : $ddrid = "DDR3";
+    break;
+    case "2" : $ddrid = "DDR4";
+    break;
+    case "3" : $ddrid = "DDR5";
+    break;
+    default : $_SESSION['error'] = "Please Choose RAM DDR."; header("Lcation: {$url}ItemAdd/Mainboardadd.php");
+    break;
+}
+
 switch ($socket) {
-    case "0" : $_SESSION['error'] = "Please Choose Socket."; header("Lcation: {$url}ItemAdd/Cpuadd.php");
+    case "0" : $_SESSION['error'] = "Please Choose CPU Socket."; header("Lcation: {$url}ItemAdd/Mainboardadd.php");
     break;
     case "1" : $socketid = "AM4";
     break;
@@ -56,20 +70,20 @@ switch ($socket) {
     break;
     case "9" : $socketid = "LGA2066";
     break;
-    default : $_SESSION['error'] = "Please Choose Socket."; header("Lcation: {$url}ItemAdd/Cpuadd.php");
+    default : $_SESSION['error'] = "Please Choose CPU Socket."; header("Lcation: {$url}ItemAdd/Mainboardadd.php");
     break;
 } 
 if (move_uploaded_file($picturetmp,$targetFile)) {
     $savedpath = "uploads/".$itemName;
-    $stmt = $conn->prepare("INSERT INTO cpu (cpu.Name,Socket,Ghz,picture,detail) VALUES (?,?,?,?,?)");
-    $stmt->execute([$name,$socketid,$ghz,$savedpath,$detail]);
+    $stmt = $conn->prepare("INSERT INTO mainboard (mainboard.Name,Ram_ddr,Cpu_socket,picture,detail) VALUES (?,?,?,?,?)");
+    $stmt->execute([$name,$ddrid,$socketid,$savedpath,$detail]);
     $_SESSION['success'] = "Succesfully.";
     header("Location: {$url}itemaddform.php");
     exit;
 }else {
     $_SESSION['error'] = "Cannot save Cpu item."; 
-    header("Lcation: {$url}ItemAdd/Cpuadd.php");
+    header("Lcation: {$url}ItemAdd/Mainboardadd.php");
 }
 
-
+// var_dump($name,$ddr,$socket,$pictureName,$detail,$ddrid,$socketid);
 ?>

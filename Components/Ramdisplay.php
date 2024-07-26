@@ -8,8 +8,8 @@
 
     $startpage = ($page-1) * $pagelimit;
 
-    $sql = "SELECT * FROM cpu LIMIT {$startpage},{$pagelimit}";
-    $sql1 = "SELECT id FROM cpu";
+    $sql = "SELECT * FROM ram LIMIT {$startpage},{$pagelimit}";
+    $sql1 = "SELECT id FROM ram";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $query = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cpu Fetch All</title>
+    <title>Ram All item</title>
     <style>
         body {
     background-color: #1d0c1b !important;
@@ -45,11 +45,12 @@
                     <table class="table table-hover ">
                         <thead>
                             <tr>
-                            <th scope="col">Cpu Picture.</th>
+                            <th scope="col">Ram Picture.</th>
                                 <th scope="col">Id</th>
-                                <th scope="col">Cpu Name</th>
-                                <th scope="col">Cpu Socket</th>
-                                <th scope="col">Clock (Ghz)</th>
+                                <th scope="col">Ram Name</th>
+                                <th scope="col">DDR</th>
+                                <th scope="col">Bus(MT/s)</th>
+                                <th scope="col">Size(Gb)</th>
                                 <th scope="col">Detail</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -64,15 +65,16 @@
                                         </td>
                                         <td><?php echo $Data['Name']; ?>
                                         </td>
-                                        <td><?php echo $Data['Socket']; ?></td>
-                                        <td><?php echo $Data['Ghz']; ?></td>
+                                        <td><?php echo $Data['ddr']; ?></td>
+                                        <td><?php echo $Data['bus']; ?></td>
+                                        <td><?php echo $Data['Size']; ?></td>
                                         <td><?php echo $Data['detail']; ?></td>
                                         <td>
                                             <form method="post" action="<?php echo $url ?>UsermanageEdit.php" style="display: inline;">
                                                 <input name="id" type="hidden" value="<?php echo $Data['id']; ?>">
                                                 <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button>
                                             </form>
-                                            <form method="post" action="<?php echo $url ?>proceed/deletecpu.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['id']; ?>?');">
+                                            <form method="post" action="<?php echo $url ?>proceed/deleteram.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['id']; ?>?');">
                                                 <input type="hidden" value="<?php echo $Data['id'] ?> " name="id">
                                                 <!-- need to return confirm value to delete -->
                                                 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-1"></i>Delete</button>
@@ -82,7 +84,7 @@
                                 <?php }; ?>
                             <?php else : ?>
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="8">
                                         <h4 class="text-center text-warning">ไม่พบในระบบ</h4>
                                     </td>
                                 </tr>
@@ -90,20 +92,19 @@
 
                         </tbody>
 
-
                     </table>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a href="<?php echo $url?>Components/Cpudisplay.php?page=1" aria-label="Previous" class="page-link text-black">
+                                <a href="<?php echo $url?>Components/Ramdisplay.php?page=1" aria-label="Previous" class="page-link text-black">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
                             <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
-                                <li class="page-item"><a href="<?php echo $url?>Components/Cpudisplay.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
+                                <li class="page-item"><a href="<?php echo $url?>Components/Ramdisplay.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
                             <?php } ?>
                             <li class="page-item">
-                                <a href="<?php echo $url?>Components/Cpudisplay.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
+                                <a href="<?php echo $url?>Components/Ramdisplay.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
