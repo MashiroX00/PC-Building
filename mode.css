@@ -22,3 +22,18 @@ body {
   background-color: #1d0c1b !important;
 
 }
+.btnhover img {
+  transition: ease-in-out 0.1s;
+}
+.btnhover img:hover {
+  scale: 1.1;
+}
+.lay {
+  margin-top: -40vh;
+}
+
+@media only screen and (max-height: 900px) {
+  .lay {
+    margin-top: -30vh;
+  }
+}

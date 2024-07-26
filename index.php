@@ -41,7 +41,7 @@ include "./conectdb.php";
     <div class="carousel-item active ">
       <img src="./src/assets/Game BG2.png" class="d-block w-100 imgslide rounded-4 " alt="...">
       <div class="carousel-caption d-none d-md-block text-black">
-        <h5><a href="">คอมพิวเตอร์ คืออะไร?</a></h5>
+        <h5><a href="<?php echo $url?>infomation.php">คอมพิวเตอร์ คืออะไร?</a></h5>
       </div>
     </div>
     <div class="carousel-item">

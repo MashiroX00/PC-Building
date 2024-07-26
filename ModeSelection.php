@@ -66,8 +66,8 @@ session_start();
 </div>
     </div>
     <div class="container d-flex justify-content-center align-items-center">
-      <div class="d-grid gap-2 col-4 mx-auto" style="margin-top: -25rem;">
-      <a href="<?php echo $url;?> "index.php"" class="btn btn-outline-secondary">Return to main menu</a>
+      <div class="d-grid gap-2 col-4 mx-auto lay">
+      <a href="<?php echo $url;?> "index.php"" class="btn btnhover"><img src="./src//assets/return button.png" alt="" srcset=""></a>
       </div>
         
     </div>
