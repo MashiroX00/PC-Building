@@ -1,7 +1,9 @@
 <?php
 session_start();
-include '../proceed/permission.php';
-include '../conectdb.php';
+include __DIR__ . '/../proceed/permission.php';
+include __DIR__ . '/../conectdb.php';
+require_once __DIR__ . '/../Components/alert.php';
+$alert = new alert();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,22 +33,10 @@ include '../conectdb.php';
                 <p class="text text-white fs-2">
                     Power Supply Add Form.
                 </p>
-                <?php if (isset($_SESSION["success"])) { ?>
-                    <div class="alert alert-success">
-                        <?php
-                        echo $_SESSION["success"];
-                        unset($_SESSION["success"]);
-                        ?>
-                    </div>
-                <?php } ?>
-                <?php if (isset($_SESSION["error"])) { ?>
-                    <div class="alert alert-warning">
-                        <?php
-                        echo $_SESSION["error"];
-                        unset($_SESSION["error"]);
-                        ?>
-                    </div>
-                <?php } ?>
+                <?php
+                $alert->showalert();
+                $alert->unsetalert();
+                ?>
                 <form action="<?php echo $url?>proceed/PsuAdding.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-car-battery fa-xl"></i></span>

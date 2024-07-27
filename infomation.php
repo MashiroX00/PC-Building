@@ -50,8 +50,8 @@ $rows = $conn->query($sql)->fetchColumn();
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?php echo $Data['head']?></h5>
-                                        <p class="card-text"><?php echo $Data['content']?></p>
+                                        <h5 class="card-title fs-4"><strong><?php echo $Data['head']?></strong></h5>
+                                        <p class="card-text fs-5">&emsp;<?php echo $Data['content']?></p>
                                         <p class="card-text"><small class="text-muted">แก้ไขล่าสุดเมื่อ <?php echo $timeDisplay?></small></p>
                                     </div>
                                 </div>

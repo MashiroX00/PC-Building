@@ -1,6 +1,8 @@
 <?php
 session_start();
 include __DIR__ . '/../conectdb.php';
+include __DIR__ . '/../Components/alert.php';
+$alert1 = new alert();
 
 $name = $_POST['name'] ?? null;
 $ghz = $_POST['ghz'] ?? null;
@@ -12,7 +14,9 @@ $detail = $_POST['detail'] ?? null;
 // var_dump($name,$ghz,$socket,$pictureName,$detail);
 
 if (!$name || !$ghz || !$socket || !$pictureName || !$picturetmp || !$detail ===  null) {
-    $_SESSION['error'] = "Something went wrongs.";
+
+    $alert1->setalert("error","Something went worng.");
+
     header("Location: {$url}ItemAdd/Cpuadd.php");
     exit;
 }
@@ -31,7 +35,7 @@ while (file_exists($pathfile . $itemName)) {
 $targetFile = $pathfile . $itemName;
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    $_SESSION['error'] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+    $alert1->setalert("error","Sorry, only JPG, JPEG & PNG files are allowed.");
     header("Location: {$url}ItemAdd/Cpuadd.php");
     exit;
 }
@@ -63,11 +67,11 @@ if (move_uploaded_file($picturetmp,$targetFile)) {
     $savedpath = "uploads/".$itemName;
     $stmt = $conn->prepare("INSERT INTO cpu (cpu.Name,Socket,Ghz,picture,detail) VALUES (?,?,?,?,?)");
     $stmt->execute([$name,$socketid,$ghz,$savedpath,$detail]);
-    $_SESSION['success'] = "Succesfully.";
+    $alert1->setalert("error","Successfully");
     header("Location: {$url}itemaddform.php");
     exit;
 }else {
-    $_SESSION['error'] = "Cannot save Cpu item."; 
+    $alert1->setalert("error","Can't Save Cpu item.");
     header("Lcation: {$url}ItemAdd/Cpuadd.php");
 }
 
