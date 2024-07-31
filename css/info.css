@@ -12,6 +12,6 @@ body {
 }
 .minimg img{
     width: 450px;
-    height: 350px;
+    height: 450px;
     object-fit: cover;
 }

@@ -46,7 +46,7 @@ $rows = $conn->query($sql)->fetchColumn();
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4 minimg">
-                                    <img src="<?php echo $Data['picture']?>" class="img-fluid rounded-start" alt="...">
+                                    <img src="<?php echo $Data['picture']?>" class="img-fluid rounded-start" alt="..." loading="lazy">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

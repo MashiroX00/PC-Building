@@ -17,6 +17,8 @@ p {
     width: 9em;
 }
 body {
+    background-image: url(../src/assets/Login1.png);
     background-color: #1d0c1b !important;
-
+    background-repeat: no-repeat;
+    background-size: cover;
 }

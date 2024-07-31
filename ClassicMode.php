@@ -8,9 +8,11 @@ include './conectdb.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="<?php echo $url ?>css/Classic.css">
     <?php
     include './packlink.php';
     ?>
+    <Script src="<?php echo $url?>GameSystems/AjaxSender.js"></Script>
 </head>
 <body >
 
@@ -26,7 +28,11 @@ include './conectdb.php';
       </button>
     </h2>
     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body"></div>
+      <div class="accordion-body">
+        <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "1","name" : "item1", "type" : "cpu"}'>Item1</div>
+        <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "11","name" : "item11", "type" : "cpu"}'>Item11</div>
+        
+      </div>
     </div>
   </div>
   <div class="accordion-item">
@@ -36,7 +42,7 @@ include './conectdb.php';
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body"></div>
+      <div class="accordion-body"><div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "2","name" : "item2", "type" : "mainboard"}'>Item2</div></div>
     </div>
   </div>
   <div class="accordion-item">
@@ -46,7 +52,7 @@ include './conectdb.php';
       </button>
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body"></div>
+      <div class="accordion-body"><div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "3","name" : "item3", "type" : "ram"}'>Item3</div></div>
     </div>
   </div>
   
@@ -73,7 +79,12 @@ include './conectdb.php';
   </div>
 </div>
       </div>
-      <div class="col-lg-3 col-lg-6">dasdg</div>
+      <div class="col-lg-3 col-lg-6">
+        <div class="dropzone" id="dropzone1" data-item-type="cpu">Drop Zone</div>
+        <div class="dropzone" id="dropzone2" data-item-type="mainboard">Drop Zone</div>
+        <div class="dropzone" id="dropzone3" data-item-type="ram">Drop Zone</div>
+        <button onclick="sendXML()" class="btn btn-warning">TEST</button>
+      </div>
       <div class="col-lg-3 col-lg-3">
         <div class="float-end">
           <?php
@@ -83,9 +94,11 @@ include './conectdb.php';
       </div>
     </div>
   </div>
-
+  
 <?php
     include './packlink2.php';
     ?>
+    <script src="<?php echo $url?>GameSystems/Collector.js"></script>
+    
 </body>
 </html>

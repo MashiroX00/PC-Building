@@ -19,6 +19,7 @@ body {
   background-image: url(./src/assets/Bluemoon30FPS-Perfect-time.gif);
   background-repeat: no-repeat;
   background-attachment: scroll;
+  background-size: cover;
   background-color: #1d0c1b !important;
 
 }
