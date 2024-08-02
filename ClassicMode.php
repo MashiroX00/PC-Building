@@ -1,6 +1,10 @@
 <?php
 session_start();
 include './conectdb.php';
+
+$CPU = "SELECT cpu.id,cpu.Name FROM cpu";
+$MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

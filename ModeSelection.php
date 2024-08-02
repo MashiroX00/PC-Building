@@ -27,13 +27,13 @@ session_start();
     <div class="card border-0 h-100">
       <img src="<?php echo $url;?>src/assets/Game BG4.png" class="card-img-top bg-img" alt="background" width="416px" height="234px">
       <div class="card-img-overlay d-flex justify-content-center align-items-center" style="margin-top: -100px;">
-        <a href=""><img src="<?php echo $url;?>src/icon/play-solid.svg" alt="play" width="50px" height="66px"></a>
+        <a href="<?php echo $url?>ClassicMode.php"><img src="<?php echo $url;?>src/icon/play-solid.svg" alt="play" width="50px" height="66px"></a>
       </div>
       <div class="card-body">
         <h5 class="card-title text-center">Play Classic Mode</h5>
         <p class="card-text text-center">โหมดธรรมดา สามารถประกอบคอมพิวเตอร์ได้ตามต้องการโดยไม่จำกัดเวลา</p>
       </div>
-    </div>
+    </div>  
     
   </div>
   <div class="col">
