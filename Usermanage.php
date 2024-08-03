@@ -76,7 +76,7 @@ $totalPage = ceil($rows / $pagelimit);
                                 <?php foreach ($query as $Data) { ?>
                                     <tr>
                                         <td>
-                                            <?php echo $Data['id']; ?>
+                                            <?php echo $Data['user_id']; ?>
                                         </td>
                                         <td><?php echo $Data['username']; ?>
                                         </td>
@@ -88,11 +88,11 @@ $totalPage = ceil($rows / $pagelimit);
                                         <td><?php echo $Data['date']; ?></td>
                                         <td>
                                             <form method="post" action="<?php echo $url ?>UsermanageEdit.php" style="display: inline;">
-                                                <input name="id" type="hidden" value="<?php echo $Data['id']; ?>">
+                                                <input name="id" type="hidden" value="<?php echo $Data['user_id']; ?>">
                                                 <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button>
                                             </form>
                                             <form method="post" action="<?php echo $url ?>proceed/userdelete.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['username']; ?>?');">
-                                                <input type="hidden" value="<?php echo $Data['id'] ?> " name="id">
+                                                <input type="hidden" value="<?php echo $Data['user_id'] ?> " name="id">
                                                 <!-- need to return confirm value to delete -->
                                                 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-1"></i>Delete</button>
                                             </form>

@@ -2,6 +2,8 @@
     class alert {
         private $type;
         private $message;
+        private $urls;
+        private $redirurl = "http://localhost/PC-Building/";
 
         public function setalert($type,$message) {
             $this->type = $type;
@@ -23,6 +25,10 @@
         public function unsetalert() {
             unset($_SESSION["error"]);
             unset($_SESSION["seccess"]);
+        }
+        public function header($url) {
+            $this->urls = $url;
+            header("Location: {$this->redirurl}{$url}");
         }
     }
 

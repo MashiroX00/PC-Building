@@ -9,7 +9,7 @@
     $data->execute([$username]);
 
     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
-        $userid = $row['id'];
+        $userid = $row['user_id'];
         $user = $row["username"];
         $dbpassword = $row["password"];
         $role = $row["role"];

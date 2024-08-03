@@ -11,7 +11,7 @@ $alert = new alert();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cpu Add</title>
+    <title>Mainboard Add</title>
     <style>
         body {
             background-color: #1d0c1b !important;

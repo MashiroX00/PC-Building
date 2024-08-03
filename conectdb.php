@@ -6,7 +6,7 @@ define('ROOT_DIR', dirname(__FILE__));
 $servername = "localhost";
 $username = "root";
 $password = "";
-$myDB = "pcbuilding";
+$myDB = "pcbuild";
 date_default_timezone_set('Asia/Bangkok'); 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$myDB", $username, $password);

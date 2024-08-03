@@ -17,7 +17,7 @@ if ($username != "") {
     $sql2 = "SELECT * FROM useraccount";
     $row = $conn->query($sql2)->fetchColumn();
     foreach ($query as $Data) {
-        $id = $Data['id'];
+        $id = $Data['user_id'];
         $email = $Data['email'];
         $first = $Data['firstname'];
         $last = $Data['lastname'];
@@ -26,12 +26,12 @@ if ($username != "") {
     $pagelimit = 5;
     isset($_GET['page']) ? $page = $_GET['page'] : $page = 1;
     $start = ($page - 1) * $pagelimit;
-    $sql1 = "SELECT useraccount.id,useraccount.username, useraccount.email, useraccount.firstname, useraccount.lastname, loggeruser.time_logger,useraccount.tel FROM loggeruser INNER JOIN useraccount ON useraccount.id = ? ORDER BY useraccount.id LIMIT {$start},{$pagelimit}";
+    $sql1 = "SELECT useraccount.user_id,useraccount.username, useraccount.email, useraccount.firstname, useraccount.lastname, loggeruser.time_logger,useraccount.tel FROM loggeruser INNER JOIN useraccount ON useraccount.user_id = ? ORDER BY useraccount.user_id LIMIT {$start},{$pagelimit}";
     $stmt1 = $conn->prepare($sql1);
     $stmt1->execute([$id]);
     $query1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql3 = $sql = "SELECT useraccount.id,useraccount.username, useraccount.email, useraccount.firstname, useraccount.lastname, loggeruser.time_logger,useraccount.tel FROM loggeruser INNER JOIN useraccount ON useraccount.id = ? ORDER BY useraccount.id";
+    $sql3 = $sql = "SELECT useraccount.user_id,useraccount.username, useraccount.email, useraccount.firstname, useraccount.lastname, loggeruser.time_logger,useraccount.tel FROM loggeruser INNER JOIN useraccount ON useraccount.user_id = ? ORDER BY useraccount.user_id";
     $stmt2 = $conn->prepare($sql3);
     $stmt2->execute([$id]);
     $rows = $stmt2->rowCount();
