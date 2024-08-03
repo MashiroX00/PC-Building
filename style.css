@@ -4,11 +4,12 @@ header {
 
 }
 body {
-    background-image: url(./src/assets/พื้นหลัง2.png);
+    background-image: url(./src/assets/pc\ build.jpg);
     background-attachment: scroll;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #1d0c1b !important;
+    background-position: right;
 }
 .moreinfo {
     margin-top: 10vh;
