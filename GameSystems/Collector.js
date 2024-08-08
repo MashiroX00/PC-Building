@@ -42,12 +42,13 @@ dropzone.forEach(dropzone => {
         newElement.style.backgroundColor = jsonData.color;
         newElement.style.width = '100px';
         newElement.style.height = '100px';
-        newElement.style.margin = '20px';
         newElement.style.cursor = 'move';
         newElement.style.color = 'white';
         newElement.style.textAlign = 'center';
-        newElement.style.lineHeight = '100px';
+        newElement.style.alignContent = 'center';
         newElement.setAttribute('data-info', data);
+
+        dropzone.textContent = '';
 
         dropzone.appendChild(newElement);
 
@@ -56,15 +57,13 @@ dropzone.forEach(dropzone => {
             event.dataTransfer.setData('application/json', data);
             event.target.style.opacity = '0.5';
         });
-
+        
         newElement.addEventListener('dragend', (event) => {
             console.log("Dragend event triggered"); // เพิ่ม console.log เพื่อตรวจสอบ
             event.target.style.opacity = '';
             if (event.target.closest('.dropzone')) {
                 console.log("Item outside dropzone, removing..."); // เพิ่ม console.log
                 event.target.remove();
-                event.target.style.display = 'none'; // บังคับ re-render
-                event.target.style.display = '';
             }
         });
     });

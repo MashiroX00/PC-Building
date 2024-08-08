@@ -1,22 +1,21 @@
 .draggable {
-    width: 100px;
-    height: 100px;
-    margin: 20px;
     cursor: move;
     display: inline-block;
     background-color: blue;
     color: white;
-    text-align: center;
-    line-height: 100px;
+    padding: 5px;
+    position: relative;
+    width: 15em;
 }
-
 .dropzone {
-    width: 200px;
-    height: 200px;
+    min-width: 100px;
+    min-height: 100px;
     background-color: lightgray;
     margin: 20px;
-    border: 2px dashed black;
+    border: 2px dotted black;
     display: inline-block;
     vertical-align: top;
+    text-align: center;
+    align-content: center;
+    justify-items: center;
 }
-
