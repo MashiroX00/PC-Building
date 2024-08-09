@@ -2,8 +2,35 @@
 session_start();
 include './conectdb.php';
 
-$CPU = "SELECT cpu.id,cpu.Name FROM cpu";
-$MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
+$cpu = array("id", "Name", "Ghz", "Socket", "picture");
+$mainboard  = array("id", "Name", "Cpu_socket", "Ram_ddr", "picture");
+$ram  = array("id", "Name", "ddr", "Size", "bus", "picture");
+$storge = array("id", "Name","Size","picture","Type");
+$psu = array("id", "Name","watt","picture");
+$tables = array(
+  "cpu" => array(
+      "id", "Name", "Ghz", "Socket", "picture"
+  ),
+  "mainboard" => array(
+      "id", "Name", "Cpu_socket", "Ram_ddr", "picture"
+  ),
+  "ram" => array(
+      "id", "Name", "ddr", "Size", "bus", "picture"
+  ),
+  "storge" => array(
+    "id", "Name","Size","picture","Type"
+  ),
+  "psu" => array(
+    "id", "Name","watt","picture"
+  )
+);
+foreach ($tables as $table => $columns) {
+  $sql = "SELECT " . implode(",", $columns) . " FROM " . $table;
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $$table = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -36,19 +63,16 @@ $MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
                 <ul class="list-group list-group-flush">
+                 <?php foreach ($cpu as $Cpu) {?>
                   <li class="list-group-item">
-                  <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "1","name" : "item1", "type" : "cpu"}'>
-                  <img src="" alt="" width="100px"><br>
-                  <span class="text fs-6">Name:</span><br>
-                  <span class="text fs-6">Name:</span><br>
-                  <span class="text fs-6">Name:</span><br>
-                  
-                </div>
-                  </li class="">
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item">And a fifth one</li>
+                  <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $Cpu['id'];?>","name" : "<?php echo $Cpu['Name'];?>", "type" : "cpu", "picture" : "<?php echo $Cpu['picture']?>"}'>
+                  <img src="<?php echo $url.$Cpu['picture']?>" alt="" width="100px" draggable="false"><br>
+                  <span class="text fs-6">Name: <?php echo $Cpu['Name']?></span><br>
+                  <span class="text fs-6">Ghz: <?php echo $Cpu['Ghz']?></span><br>
+                  <span class="text fs-6">Socket: <?php echo $Cpu['Socket']?></span><br>
+                </div>  
+                  </li>
+                  <?php };?>
                 </ul>
 
               </div>
@@ -62,7 +86,18 @@ $MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "2","name" : "item2", "type" : "mainboard"}'>Item2</div>
+              <ul class="list-group list-group-flush">
+                 <?php foreach ($mainboard as $mb) {?>
+                  <li class="list-group-item">
+                  <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $mb['id'];?>","name" : "<?php echo $mb['Name'];?>", "type" : "mainboard", "picture" : "<?php echo $mb['picture']?>"}'>
+                  <img src="<?php echo $url.$mb['picture']?>" alt="" width="100px" draggable="false"><br>
+                  <span class="text fs-6">Name: <?php echo $mb['Name']?></span><br>
+                  <span class="text fs-6">Ram DDR: <?php echo $mb['Ram_ddr']?></span><br>
+                  <span class="text fs-6">Cpu Socket: <?php echo $mb['Cpu_socket']?></span><br>
+                </div>
+                  </li>
+                  <?php };?>
+                </ul>
               </div>
             </div>
           </div>
@@ -74,7 +109,18 @@ $MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "3","name" : "item3", "type" : "ram"}'>Item3</div>
+              <?php foreach ($ram as $rm) {?>
+                  <li class="list-group-item">
+                  <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $rm['id'];?>","name" : "<?php echo $rm['Name'];?>", "type" : "ram", "picture" : "<?php echo $rm['picture']?>"}'>
+                  <img src="<?php echo $url.$rm['picture']?>" alt="" width="100px" draggable="false"><br>
+                  <span class="text fs-6">Name: <?php echo $rm['Name']?></span><br>
+                  <span class="text fs-6">DDR: <?php echo $rm['ddr']?></span><br>
+                  <span class="text fs-6">Size: <?php echo $rm['Size']?></span><br>
+                  <span class="text fs-6">Bus: <?php echo $rm['bus']?></span><br>
+                </div>
+                  </li>
+                  <?php };?>
+                </ul>
               </div>
             </div>
           </div>
@@ -86,7 +132,19 @@ $MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
               </button>
             </h2>
             <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body"></div>
+              <div class="accordion-body">
+              <?php foreach ($storge as $st) {?>
+                  <li class="list-group-item">
+                  <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $st['id'];?>","name" : "<?php echo $st['Name'];?>", "type" : "storage", "picture" : "<?php echo $st['picture']?>"}'>
+                  <img src="<?php echo $url.$st['picture']?>" alt="" width="100px" draggable="false"><br>
+                  <span class="text fs-6">Name: <?php echo $st['Name']?></span><br>
+                  <span class="text fs-6">Size(GB): <?php echo $st['Size']?></span><br>
+                  <span class="text fs-6">Type: <?php echo $st['Type']?></span><br>
+                </div>
+                  </li>
+                  <?php };?>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -97,7 +155,16 @@ $MAINBOARDd = "SELECT mainboard.id,mainboard.Name"
               </button>
             </h2>
             <div id="flush-collapsefift" class="accordion-collapse collapse" aria-labelledby="flush-headingfift" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body"></div>
+              <div class="accordion-body"><?php foreach ($psu as $pu) {?>
+                  <li class="list-group-item">
+                  <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $pu['id'];?>","name" : "<?php echo $pu['Name'];?>", "type" : "psu", "picture" : "<?php echo $pu['picture']?>"}'>
+                  <img src="<?php echo $url.$pu['picture']?>" alt="" width="100px" draggable="false"><br>
+                  <span class="text fs-6">Name: <?php echo $pu['Name']?></span><br>
+                  <span class="text fs-6">Watt: <?php echo $pu['watt']?></span><br>
+                </div>
+                  </li>
+                  <?php };?>
+                </ul></div>
             </div>
           </div>
         </div>

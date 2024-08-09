@@ -1,11 +1,13 @@
 .draggable {
     cursor: move;
     display: inline-block;
-    background-color: blue;
+    background-color: rgb(3, 197, 194);
     color: white;
     padding: 5px;
     position: relative;
     width: 15em;
+    border-radius: 5px;
+    
 }
 .dropzone {
     min-width: 100px;
@@ -18,4 +20,5 @@
     text-align: center;
     align-content: center;
     justify-items: center;
+    border-radius: 5px;
 }

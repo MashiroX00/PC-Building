@@ -1,5 +1,6 @@
 const draggableItem = document.querySelectorAll(".draggable");
 const dropzone = document.querySelectorAll(".dropzone");
+var worngcounter = 0;
 
 draggableItem.forEach(draggable => {
     draggable.addEventListener('dragstart', (event) => {
@@ -31,8 +32,11 @@ dropzone.forEach(dropzone => {
 
         const dropzoneType = dropzone.getAttribute('data-item-type');
         if (jsonData.type !== dropzoneType) {
-            alert("Dropzone นี้ไม่ใช่ประเภทนี้นะ")
-            return; // ไม่ให้วาง item ถ้าประเภทไม่ตรงกัน
+            worngcounter += 1;
+            console.log(worngcounter);
+            
+            alert("Dropzone นี้ไม่ใช่ประเภทนี้นะ");
+            return worngcounter; // ไม่ให้วาง item ถ้าประเภทไม่ตรงกัน
         }
 
         const newElement = document.createElement('div');
@@ -44,6 +48,7 @@ dropzone.forEach(dropzone => {
         newElement.style.height = '100px';
         newElement.style.cursor = 'move';
         newElement.style.color = 'white';
+        newElement.style.borderRadius = '5px';
         newElement.style.textAlign = 'center';
         newElement.style.alignContent = 'center';
         newElement.setAttribute('data-info', data);
@@ -97,8 +102,14 @@ function sendXML() {
             dataInput.type = 'hidden';
             dataInput.name = 'datainfo';
             dataInput.value = JSON.stringify(itemArray);
+            
+            const worngcounters = document.createElement('input');
+            worngcounters.type = 'hidden';
+            worngcounters.name = 'worngvalue';
+            worngcounters.value = worngcounter;
 
             form.appendChild(dataInput);
+            form.appendChild(worngcounters);
             document.body.appendChild(form);
             form.submit();
         }
