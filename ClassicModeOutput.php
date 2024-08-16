@@ -4,10 +4,16 @@ include __DIR__ . "/Components/alert.php";
 $data = $_POST['datainfo'] ?? NULL;
 $worng = $_POST['worngvalue'] ?? null;
 $haveitem = true;
+$countArray = 0;
 if (!empty($data)) {
     $dataArray = json_decode($data, true);
+    $countArray = count($dataArray);
 } else {
     $haveitem = false;
+}
+
+if (isset($_POST['sub'])) {
+   
 }
 ?>
 <!DOCTYPE html>
@@ -27,15 +33,18 @@ if (!empty($data)) {
             overflow-x: hidden;
             box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
         }
+
         .bg-1 {
-            background-color:#d0f5f7;
+            background-color: #d0f5f7;
         }
+
         body {
             background-image: url(./src/assets/pc\ build.png);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: right;
         }
+
         .fontsize {
             font-size: 60px;
         }
@@ -54,9 +63,9 @@ if (!empty($data)) {
             <div class="col-4 col-sm-4"></div>
             <div class="col-4 col-sm-6">
                 <p class="text fs-5 text-white">
-                    Computer Part: <?php echo count($dataArray); ?>
+                    Computer Part: <?php echo $countArray ?>
                 </p>
-                <p class="text fs-5 text-white" >
+                <p class="text fs-5 text-white">
                     Total Worng Asignments: <?php echo $worng; ?>
                 </p>
             </div>
@@ -68,13 +77,13 @@ if (!empty($data)) {
                     <?php if ($haveitem) : ?>
                         <?php foreach ($dataArray as $items) { ?>
                             <div class="container bg-1 mb-1 pb-2">
-                                <span class="text fs-4">
+                                <span class="text fs-4" id="type">
                                     <?php echo $items['type']; ?>:
                                 </span><br>
                                 <span class="text fs-5">
                                     <img src="<?php echo $url . $items['picture'] ?>" alt="img" width="100px" draggable="false"><br>
                                 </span>
-                                <span class="text fs-5">
+                                <span class="text fs-5" id="itemid">
                                     ID: <?php echo $items['id']; ?>
                                 </span><br>
                                 <span class="text fs-5">
@@ -85,7 +94,30 @@ if (!empty($data)) {
                     <?php endif ?>
                 </div>
             </div>
+            <div class="col-4 col-sm-4">
+               
+            </div>
+            <div class="col-4 col-sm-4 ">
+               
+            </div>
+            <div class="col-4 col-sm-5 mt-5">
+            <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
+            <div class="d-grid gap-4 col-9 mx-5 ">
+                <a href="<?php echo $url."ClassicMode.php"?>" class="btn btn-outline-info text-white" type="button">Play again</a>
+                <?php if ($countArray >= 5) : ?>
+                    <input type="hidden" name="sub" value="1">
+                    <button class="btn btn-outline-success text-white" type="submit">Save your computer</button>
+                    <?php else :?>
+                        <button href="<?php echo $url."index.php"?>" class="btn btn-outline-danger text-white" type="button" disabled>Cannot Save Your Computer</button>
+                <?php endif?>
+                <a href="<?php echo $url."index.php"?>" class="btn btn-outline-danger text-white" type="button">Return to main menu</a>
+            </div>
+            </form>
+            </div>
+            <div class="col-4 col-sm-5">
+            </div>
         </div>
+
     </div>
     <?php include ROOT_DIR . "/packlink2.php"; ?>
 </body>

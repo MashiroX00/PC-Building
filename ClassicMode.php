@@ -44,7 +44,6 @@ foreach ($tables as $table => $columns) {
   <?php
   include './packlink.php';
   ?>
-  <Script src="<?php echo $url ?>GameSystems/AjaxSender.js"></Script>
 </head>
 
 <body>
@@ -169,7 +168,7 @@ foreach ($tables as $table => $columns) {
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-lg-6">
+      <div class="col-lg-3 col-lg-4 case justify-content-center">
         <div class="dropzone" id="dropzone1" data-item-type="cpu">CPU</div>
         <div class="dropzone" id="dropzone2" data-item-type="mainboard">Mainboard</div>
         <div class="dropzone" id="dropzone3" data-item-type="ram">Ram</div>
@@ -178,7 +177,7 @@ foreach ($tables as $table => $columns) {
 
         <button onclick="sendXML()" class="btn btn-warning">TEST</button>
       </div>
-      <div class="col-lg-3 col-lg-3">
+      <div class="col-lg-3 col-lg-5">
         <div class="float-end">
           <?php
           include './Components/ClassicModalMenu.php';

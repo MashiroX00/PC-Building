@@ -22,3 +22,10 @@
     justify-items: center;
     border-radius: 5px;
 }
+.case {
+    background-image: url(./../src/assets/case.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+   
+    background-position: right;
+} 
