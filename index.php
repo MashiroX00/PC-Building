@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "./conectdb.php";
+include __DIR__ . "/Components/alert.php";
+$alerts = new alert();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +23,10 @@ include "./conectdb.php";
 <div class="container-fluid mt-5">
   <div class="row">
     <div class="col-4 col-sm-4">
-      <!-- column1 -->
+      <?php 
+      $alerts->showalert();
+      $alerts->unsetalert();
+      ?>
     </div>
     <div class="col-4 col-sm-4 text-center mt-5">
       <!-- column2 -->

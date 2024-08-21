@@ -4,6 +4,7 @@
         private $message;
         private $urls;
         private $redirurl = "http://localhost/PC-Building/";
+        private $loggerMessage;
 
         public function setalert($type,$message) {
             $this->type = $type;
@@ -25,10 +26,17 @@
         public function unsetalert() {
             unset($_SESSION["error"]);
             unset($_SESSION["seccess"]);
+            unset($_SESSION["success"]);
         }
         public function header($url) {
             $this->urls = $url;
             header("Location: {$this->redirurl}{$url}");
+        }
+        public function Logger($message) {
+            $this->loggerMessage = $message;
+            echo "<script>
+                console.log({$this->loggerMessage});
+            </script>";
         }
     }
 

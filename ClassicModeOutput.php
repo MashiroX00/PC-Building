@@ -1,24 +1,21 @@
 <?php
 include  __DIR__ . "/conectdb.php";
 include __DIR__ . "/Components/alert.php";
+require_once __DIR__ . "/Components/alert.php";
 $data = $_POST['datainfo'] ?? NULL;
 $worng = $_POST['worngvalue'] ?? null;
 $haveitem = true;
 $countArray = 0;
+$alerts = new alert();
 if (!empty($data)) {
     $dataArray = json_decode($data, true);
     $countArray = count($dataArray);
 } else {
     $haveitem = false;
 }
-
-if (isset($_POST['sub'])) {
-   
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,6 +46,7 @@ if (isset($_POST['sub'])) {
             font-size: 60px;
         }
     </style>
+
 </head>
 
 <body>
@@ -84,7 +82,7 @@ if (isset($_POST['sub'])) {
                                     <img src="<?php echo $url . $items['picture'] ?>" alt="img" width="100px" draggable="false"><br>
                                 </span>
                                 <span class="text fs-5" id="itemid">
-                                    ID: <?php echo $items['id']; ?>
+                                    ID: <div class="ItemId d-inline ID" data-info='{"type": "<?php echo $items['type']?>","id": "<?php echo $items['id'];?>"}'><?php echo $items['id']; ?></div>
                                 </span><br>
                                 <span class="text fs-5">
                                     Name: <?php echo $items['name']; ?>
@@ -95,24 +93,20 @@ if (isset($_POST['sub'])) {
                 </div>
             </div>
             <div class="col-4 col-sm-4">
-               
             </div>
             <div class="col-4 col-sm-4 ">
-               
+
             </div>
             <div class="col-4 col-sm-5 mt-5">
-            <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
-            <div class="d-grid gap-4 col-9 mx-5 ">
-                <a href="<?php echo $url."ClassicMode.php"?>" class="btn btn-outline-info text-white" type="button">Play again</a>
-                <?php if ($countArray >= 5) : ?>
-                    <input type="hidden" name="sub" value="1">
-                    <button class="btn btn-outline-success text-white" type="submit">Save your computer</button>
-                    <?php else :?>
-                        <button href="<?php echo $url."index.php"?>" class="btn btn-outline-danger text-white" type="button" disabled>Cannot Save Your Computer</button>
-                <?php endif?>
-                <a href="<?php echo $url."index.php"?>" class="btn btn-outline-danger text-white" type="button">Return to main menu</a>
-            </div>
-            </form>
+                    <div class="d-grid gap-4 col-9 mx-5 ">
+                        <a href="<?php echo $url . "ClassicMode.php" ?>" class="btn btn-outline-info text-white" type="button">Play again</a>
+                        <?php if ($countArray >= 5) : ?>
+                            <button class="btn btn-outline-success text-white" type="submit" id="Save" onclick="Save()">Save your computer</button>
+                        <?php else : ?>
+                            <button href="<?php echo $url . "index.php" ?>" class="btn btn-outline-danger text-white" type="button" disabled>Cannot Save Your Computer</button>
+                        <?php endif ?>
+                        <a href="<?php echo $url . "index.php" ?>" class="btn btn-outline-danger text-white" type="button">Return to main menu</a>
+                    </div>
             </div>
             <div class="col-4 col-sm-5">
             </div>
@@ -120,6 +114,7 @@ if (isset($_POST['sub'])) {
 
     </div>
     <?php include ROOT_DIR . "/packlink2.php"; ?>
+    <script src="<?php echo $url."GameSystems/GameSaved.js"?>"></script>
 </body>
 
 </html>
