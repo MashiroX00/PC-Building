@@ -25,11 +25,19 @@ function Save() {
             dataInput.name = 'datainfo';
             dataInput.value = JSON.stringify(items);
             
-            const worngcounters = document.createElement('input');
-            worngcounters.type = 'hidden';
-            worngcounters.name = 'worngvalue';
+            const dataInput1 = document.createElement('input');
+            dataInput1.type = 'hidden';
+            dataInput1.name = 'gametype';
+            dataInput1.value = 'Classic';
+
+            const score = document.createElement('input');
+            score.type = 'hidden';
+            score.name = 'score';
+            score.value = '0';
 
             form.appendChild(dataInput);
+            form.appendChild(dataInput1);
+            form.appendChild(score);
             document.body.appendChild(form);
             form.submit();
         }

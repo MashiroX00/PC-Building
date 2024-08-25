@@ -31,7 +31,7 @@ $alerts = new alert();
     <div class="col-4 col-sm-4 text-center mt-5">
       <!-- column2 -->
     <a href="<?php echo$url;?>ModeSelection.php" class="btn mt-5 mb-3 imgHover" ><img src="<?php echo$url;?>src/assets/Start.png" style="width: 350px;"></a><br>
-    <a href="<?php echo$url;?>ModeSelection.php" class="btn imgHover"><img src="<?php echo$url;?>src/assets/View_PC.png" style="width: 350px;"></a> 
+    <a href="<?php echo$url;?>viewpc.php" class="btn imgHover"><img src="<?php echo$url;?>src/assets/View_PC.png" style="width: 350px;"></a> 
     </div>
 
     <div class="col-4 col-sm-3 me-1 mt-4">
@@ -44,9 +44,10 @@ $alerts = new alert();
   </div>
   <div class="carousel-inner boxsha rounded-4">
     <div class="carousel-item active ">
-      <img src="./src/assets/Game BG2.png" class="d-block w-100 imgslide rounded-4 " alt="...">
+      <img src="./infoimg/computer.jpg" class="d-block w-100 imgslide rounded-4 " alt="...">
       <div class="carousel-caption d-none d-md-block text-black">
         <h5><a href="<?php echo $url?>infomation.php">คอมพิวเตอร์ คืออะไร?</a></h5>
+        <p></p>
       </div>
     </div>
     <div class="carousel-item">

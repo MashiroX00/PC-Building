@@ -10,22 +10,36 @@
     
 }
 .dropzone {
-    min-width: 100px;
-    min-height: 100px;
-    background-color: lightgray;
-    margin: 20px;
-    border: 2px dotted black;
-    display: inline-block;
-    vertical-align: top;
+    position: absolute;
+    width: 100px; /* ขนาดของกล่องสี่เหลี่ยม */
+    height: 100px; /* ขนาดของกล่องสี่เหลี่ยม */
+    background-color: rgba(0, 255, 255, 0.5); /* สีและความโปร่งใสของกล่อง */
+    border-radius: 15px;
     text-align: center;
     align-content: center;
-    justify-items: center;
-    border-radius: 5px;
 }
 .case {
     background-image: url(./../src/assets/case.png);
     background-repeat: no-repeat;
     background-size: contain;
-   
-    background-position: right;
-} 
+    background-position: center;
+}
+.container1 {
+    position: relative;
+    width: auto; /* กำหนดขนาดของ container ให้ตรงกับรูป */
+    height: auto; /* กำหนดขนาดของ container ให้ตรงกับรูป */
+}
+
+.case-image {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* กำหนดตำแหน่งของแต่ละกล่องสี่เหลี่ยม */
+.box-1 { top: 30px; left: 470px; }
+.box-2 { top: 320px; left: 303px; }
+.box-3 { top: 157px; left: 1040px; }
+.box-4 { top: 791px; left: 352px; }
+.box-5 { top: 769px; left: 1050px; }
+/* .box-6 { top: 500px; left: 300px; } */

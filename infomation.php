@@ -43,7 +43,7 @@ $rows = $conn->query($sql)->fetchColumn();
                     }
                     ?>
                     <div class="col-4 col-lg-11 mb-2">
-                        <div class="card mb-3">
+                        <div class="card mb-3 card1">
                             <div class="row g-0">
                                 <div class="col-md-4 minimg">
                                     <img src="<?php echo $Data['picture']?>" class="img-fluid rounded-start" alt="..." loading="lazy">

@@ -7,7 +7,8 @@ $data = $_POST["datainfo"];
 $Arraydata = json_decode($data, true);
 $newVariables = [];
 $IDUser = null;
-
+$gamemode = $_POST["gametype"];
+$score = $_POST["score"];
 foreach ($Arraydata as $item) {
     // สร้างชื่อตัวแปลโดยนำชนิดอุปกรณ์มาต่อกับ '_id'
     $variableName = $item['type'] . '_id';
@@ -38,9 +39,9 @@ if (isset($_SESSION['user']) || isset($_SESSION['admin']) && !empty($_SESSION['u
     exit;
 }
 if (!empty($IDUser)) {
-    $sql = "INSERT INTO career (user_id,cpu,mainboard,ram,storage,psu) VALUES (?,?,?,?,?,?)";
+    $sql = "INSERT INTO career (user_id,cpu,mainboard,ram,storage,psu,Game_type,score) VALUES (?,?,?,?,?,?,?,?)";
     $stmt1 = $conn->prepare($sql);
-    $stmt1->execute([$IDUser,$cpu_id,$mainboard_id,$ram_id,$storage_id,$psu_id]);
+    $stmt1->execute([$IDUser,$cpu_id,$mainboard_id,$ram_id,$storage_id,$psu_id,$gamemode,$score]);
     if ($stmt1) {
         $alerts->setalert("success","Your computer are saved.");
         $alerts->header("index.php");

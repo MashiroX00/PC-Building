@@ -52,7 +52,6 @@ dropzone.forEach(dropzone => {
         newElement.style.textAlign = 'center';
         newElement.style.alignContent = 'center';
         newElement.setAttribute('data-info', data);
-
         dropzone.textContent = '';
 
         dropzone.appendChild(newElement);
@@ -69,6 +68,7 @@ dropzone.forEach(dropzone => {
             if (event.target.closest('.dropzone')) {
                 console.log("Item outside dropzone, removing..."); // เพิ่ม console.log
                 event.target.remove();
+                
             }
         });
     });

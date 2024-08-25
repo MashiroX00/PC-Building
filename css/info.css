@@ -9,9 +9,40 @@ body {
 }
 .card {
     box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px, rgba(243, 243, 243, 0.3) 0px 30px 60px -30px;
+    max-width: auto;
+    max-height: 250px;
+    transition: ease-in-out 0.5s;
+    overflow: hidden;
 }
 .minimg img{
-    width: 450px;
-    height: 450px;
     object-fit: cover;
+}
+
+.card:hover{
+    scale: 1.1;
+    transition: ease-in-out 0.5s;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: black white;
+    max-height: 80vh;
+}
+
+@media screen and (max-width: 1000px){
+    .minimg img{
+        max-width: auto;
+        max-height: auto;
+        object-fit: cover;
+        
+    }
+    .card {
+        width: 80vw;
+        height: 20vh;
+        overflow-y: hidden;
+    }
+}
+@media screen and (max-width: 770px){
+    .card {
+        overflow-y: scroll;
+        scrollbar-width: thin;
+    }
 }
