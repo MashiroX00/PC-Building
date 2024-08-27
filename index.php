@@ -46,7 +46,7 @@ $alerts = new alert();
     <div class="carousel-item active ">
       <img src="./infoimg/computer.jpg" class="d-block w-100 imgslide rounded-4 " alt="...">
       <div class="carousel-caption d-none d-md-block text-black">
-        <h5><a href="<?php echo $url?>infomation.php">คอมพิวเตอร์ คืออะไร?</a></h5>
+        <h5><a href="<?php echo $url?>infomation.php" class="ti1">คอมพิวเตอร์ คืออะไร?</a></h5>
         <p></p>
       </div>
     </div>

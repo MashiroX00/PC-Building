@@ -1,4 +1,5 @@
 <?php
+session_start();
 include  __DIR__ . "/conectdb.php";
 include __DIR__ . "/Components/alert.php";
 require_once __DIR__ . "/Components/alert.php";

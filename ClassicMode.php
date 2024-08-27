@@ -70,7 +70,7 @@ foreach ($tables as $table => $columns) {
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-2 col-lg-2 border vh-100" style="background-color: #D9D9D9;">
+      <div class="col-lg-2 col-lg-2 border vh-100 overflow-y-scroll sc" style="background-color: #D9D9D9;">
         <h3 class="text text-white text-center m-3">Item(อุปกรณ์)</h3>
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <div class="accordion-item">
@@ -128,6 +128,7 @@ foreach ($tables as $table => $columns) {
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
+              <ul class="list-group list-group-flush">
                 <?php foreach ($ram as $rm) { ?>
                   <li class="list-group-item">
                     <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $rm['id']; ?>","name" : "<?php echo $rm['Name']; ?>", "type" : "ram", "picture" : "<?php echo $rm['picture'] ?>"}'>
@@ -152,6 +153,7 @@ foreach ($tables as $table => $columns) {
             </h2>
             <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
+              <ul class="list-group list-group-flush">
                 <?php foreach ($storge as $st) { ?>
                   <li class="list-group-item">
                     <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $st['id']; ?>","name" : "<?php echo $st['Name']; ?>", "type" : "storage", "picture" : "<?php echo $st['picture'] ?>"}'>
@@ -189,14 +191,13 @@ foreach ($tables as $table => $columns) {
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-lg-9 case container1">
-        
+      <div class="col-lg-3 col-lg-9 case container1 container-fluid">
         <div class="dropzone box-1" id="dropzone1" data-item-type="cpu">CPU</div>
         <div class="dropzone box-2" id="dropzone2" data-item-type="mainboard">Mainboard</div>
         <div class="dropzone box-3" id="dropzone3" data-item-type="ram">Ram</div>
-        <div class="dropzone box-4" id="dropzone4" data-item-type="storage">Storage</div>
-        <div class="dropzone box-5" id="dropzone5" data-item-type="psu">Power Supply</div>
-        
+        <div class="dropzone box-5" id="dropzone4" data-item-type="storage">Storage</div>
+        <div class="dropzone box-4" id="dropzone5" data-item-type="psu">Power Supply</div>
+
       </div>
       <div class="col-4 col-lg-1">
         <div class="float-end">
