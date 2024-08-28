@@ -128,18 +128,18 @@ foreach ($tables as $table => $columns) {
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-              <ul class="list-group list-group-flush">
-                <?php foreach ($ram as $rm) { ?>
-                  <li class="list-group-item">
-                    <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $rm['id']; ?>","name" : "<?php echo $rm['Name']; ?>", "type" : "ram", "picture" : "<?php echo $rm['picture'] ?>"}'>
-                      <img src="<?php echo $url . $rm['picture'] ?>" alt="" width="100px" draggable="false"><br>
-                      <span class="text fs-6">Name: <?php echo $rm['Name'] ?></span><br>
-                      <span class="text fs-6">DDR: <?php echo $rm['ddr'] ?></span><br>
-                      <span class="text fs-6">Size: <?php echo $rm['Size'] ?></span><br>
-                      <span class="text fs-6">Bus: <?php echo $rm['bus'] ?></span><br>
-                    </div>
-                  </li>
-                <?php }; ?>
+                <ul class="list-group list-group-flush">
+                  <?php foreach ($ram as $rm) { ?>
+                    <li class="list-group-item">
+                      <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $rm['id']; ?>","name" : "<?php echo $rm['Name']; ?>", "type" : "ram", "picture" : "<?php echo $rm['picture'] ?>"}'>
+                        <img src="<?php echo $url . $rm['picture'] ?>" alt="" width="100px" draggable="false"><br>
+                        <span class="text fs-6">Name: <?php echo $rm['Name'] ?></span><br>
+                        <span class="text fs-6">DDR: <?php echo $rm['ddr'] ?></span><br>
+                        <span class="text fs-6">Size: <?php echo $rm['Size'] ?></span><br>
+                        <span class="text fs-6">Bus: <?php echo $rm['bus'] ?></span><br>
+                      </div>
+                    </li>
+                  <?php }; ?>
                 </ul>
               </div>
             </div>
@@ -153,17 +153,17 @@ foreach ($tables as $table => $columns) {
             </h2>
             <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-              <ul class="list-group list-group-flush">
-                <?php foreach ($storge as $st) { ?>
-                  <li class="list-group-item">
-                    <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $st['id']; ?>","name" : "<?php echo $st['Name']; ?>", "type" : "storage", "picture" : "<?php echo $st['picture'] ?>"}'>
-                      <img src="<?php echo $url . $st['picture'] ?>" alt="" width="100px" draggable="false"><br>
-                      <span class="text fs-6">Name: <?php echo $st['Name'] ?></span><br>
-                      <span class="text fs-6">Size(GB): <?php echo $st['Size'] ?></span><br>
-                      <span class="text fs-6">Type: <?php echo $st['Type'] ?></span><br>
-                    </div>
-                  </li>
-                <?php }; ?>
+                <ul class="list-group list-group-flush">
+                  <?php foreach ($storge as $st) { ?>
+                    <li class="list-group-item">
+                      <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $st['id']; ?>","name" : "<?php echo $st['Name']; ?>", "type" : "storage", "picture" : "<?php echo $st['picture'] ?>"}'>
+                        <img src="<?php echo $url . $st['picture'] ?>" alt="" width="100px" draggable="false"><br>
+                        <span class="text fs-6">Name: <?php echo $st['Name'] ?></span><br>
+                        <span class="text fs-6">Size(GB): <?php echo $st['Size'] ?></span><br>
+                        <span class="text fs-6">Type: <?php echo $st['Type'] ?></span><br>
+                      </div>
+                    </li>
+                  <?php }; ?>
                 </ul>
               </div>
             </div>
@@ -200,10 +200,25 @@ foreach ($tables as $table => $columns) {
 
       </div>
       <div class="col-4 col-lg-1">
-        <div class="float-end">
-          <?php
-          include './Components/ClassicModalMenu.php';
-          ?>
+        <div class="row">
+          <div class="col-12 col-sm-12">
+            <div class="float-end">
+              <?php
+              include './Components/ClassicModalMenu.php';
+              ?>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 mb-4">
+            <div class="float-end mt-1"><button onclick="sendXML()" class="btn btn-warning">Fisnish</button></div><br>
+          </div>
+          <div class="col-12 col-sm-12 ">
+            <div class="float-end overflow-visible">
+              <button type="button" class="btn" data-bs-toggle="popover" data-bs-title="ช่วยเหลือ" data-bs-content="ลากไอเทมจากทางซ้ายมือมาใส่ลงในกล่องทางขวามือให้ตรงกับประเภทของกล่องนั่นๆ" data-bs-placement="left" >
+                 <i class="fa-regular fa-circle-question fa-2xl"></i> 
+                </button>
+
+            </div>
+          </div>
         </div>
       </div>
 

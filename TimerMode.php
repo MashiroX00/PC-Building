@@ -34,6 +34,7 @@ $numcpu = "";
 $numram = "";
 $numstorge = "";
 $numpsu = "";
+
 $tables = array(
     "cpu" => array(
         "id",
@@ -81,20 +82,28 @@ foreach ($tables as $table => $columns) {
 $Seed = $_POST['gameid'] ?? 0;
 if (empty($Seed)) {
     $requirdGameId = true;
-while ($requirdGameId) {
-    $gameid = rand(10,100);
-    $gamesql = "SELECT gameid FROM timermodetmp WHERE gameid = ?";
-    $checkgameid = $conn->prepare($gamesql);
-    $checkgameid->execute([$gameid]);
-    if ($checkgameid->rowCount() > 0) {
-        $requirdGameId = true;
-    }else {
-        $requirdGameId = false;
-        $Seed = $gameid;
+    while ($requirdGameId) {
+        $gameid = rand(10, 5000);
+        $gamesql = "SELECT gameid FROM timermodetmp WHERE gameid = ?";
+        $checkgameid = $conn->prepare($gamesql);
+        $checkgameid->execute([$gameid]);
+        if ($checkgameid->rowCount() > 0) {
+            $requirdGameId = true;
+        } else {
+            $requirdGameId = false;
+            $Seed = $gameid;
+        }
     }
 }
-} 
 $missingpart = rand(1, 5);
+$randprev = $_POST['rand'] ?? 0;
+//ตรวจสอบว่าเลขซ้ำกับก่อนหน้ารึป่าว
+if (!empty($randprev)) {
+    do {
+        $missingpart = rand(1, 5);
+    } while ($missingpart == $randprev);
+}
+
 $cpupart = true;
 $mainboardpart = true;
 $rampart = true;
@@ -246,13 +255,13 @@ if ($itemtype == 1) {
         if ($check) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point,$Seed]);
+            $querytmp->execute([$userid, $point, $Seed]);
             $alerts->setalert("success", "+25 point");
         } else {
             $point = $point - 10;
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point,$Seed]);
+            $querytmp->execute([$userid, $point, $Seed]);
             $alerts->setalert("success", "+15 point");
         }
     } else {
@@ -283,13 +292,13 @@ if ($itemtype == 1) {
         if ($check && $check1) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point,$Seed]);
+            $querytmp->execute([$userid, $point, $Seed]);
             $alerts->setalert("success", "+30 point");
         } else {
             $point = $point - 15;
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point,$Seed]);
+            $querytmp->execute([$userid, $point, $Seed]);
             $alerts->setalert("success", "+15 point");
         }
     } else {
@@ -316,13 +325,13 @@ if ($itemtype == 1) {
         if ($check) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point,$Seed]);
+            $querytmp->execute([$userid, $point, $Seed]);
             $alerts->setalert("success", "15 point");
         } else {
             $point = $point - 5;
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point,$Seed]);
+            $querytmp->execute([$userid, $point, $Seed]);
             $alerts->setalert("success", "10 point");
         }
     } else {
@@ -335,7 +344,7 @@ if ($itemtype == 1) {
     if (!empty($itemid)) {
         $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
         $querytmp = $conn->prepare($tmp);
-        $querytmp->execute([$userid, $point,$Seed]);
+        $querytmp->execute([$userid, $point, $Seed]);
         $alerts->setalert("success", "+20 point");
     } else {
         $alerts->setalert("error", "Please the fill missing box.");
@@ -346,7 +355,7 @@ if ($itemtype == 1) {
     if (!empty($itemid)) {
         $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
         $querytmp = $conn->prepare($tmp);
-        $querytmp->execute([$userid, $point,$Seed]);
+        $querytmp->execute([$userid, $point, $Seed]);
         $alerts->setalert("success", "+20 point");
     } else {
         $alerts->setalert("error", "Please fill the missing box.");
@@ -492,12 +501,21 @@ if ($itemtype == 1) {
                 </div>
             </div>
             <div class="col-lg-3 col-lg-9 case container1 container-fluid">
-                <?php $alerts->showalert();
+                <div style="width: 22%;">
+                    <?php $alerts->showalert();
                 $alerts->unsetalert();
                 ?>
+                </div>
+                
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="setTimeLeft()">
                     <p class="text fs-3">Remaining Time: <span id="timer"><?php echo $Setime ?></span><span> วินาที</span></p>
-                    <span>Game ID(Seed): </span><p class="text fs-5" id="GameSeed"><?php echo $Seed?></p>
+                    <div style="width: 22%;" class="">
+                        <div class="progress" id="progressbarupdate" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger overflow-visible" style="width: 75%" id="progress-live"></div>
+                        </div>
+                    </div>
+                    <span>Game ID(Seed): </span>
+                    <p class="text fs-5" id="GameSeed"><?php echo $Seed ?></p>
                     <div class="dropzone box-1" id="dropzone1" data-item-type="cpu"><?php echo $cpuName ?></div>
                     <div class="dropzone box-2" id="dropzone2" data-item-type="mainboard"><?php echo $mainboardName ?></div>
                     <div class="dropzone box-3" id="dropzone3" data-item-type="ram"><?php echo $ramName ?></div>
@@ -511,15 +529,31 @@ if ($itemtype == 1) {
                     <input type="hidden" name="numst" value="<?php echo $numstorge ?>">
                     <input type="hidden" name="numps" value="<?php echo $numpsu ?>">
                     <input type="hidden" name="gameid" value="<?php echo $Seed ?>">
-                    <button class="btn btn-outline-primary" type="submit">test</button>
+                    <input type="hidden" name="rand" value="<?php echo $missingpart ?>">
+                    <button class="btn btn-outline-primary" type="submit">Answer(ส่งคำตอบ)</button>
                 </form>
             </div>
             <div class="col-4 col-lg-1">
-                <div class="float-end">
-                    <?php
-                    include ROOT_DIR . '/Components/TimermodalMenu.php';
-                    ?>
-                </div>
+            <div class="row">
+          <div class="col-12 col-sm-12">
+            <div class="float-end">
+              <?php
+              include './Components/TimermodalMenu.php';
+              ?>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 mb-4">
+            <div class="float-end mt-1"><button onclick="sendXML()" class="btn btn-warning">Fisnish<br>(จบการเล่น)</button></div><br>
+          </div>
+          <div class="col-12 col-sm-12 ">
+            <div class="float-end overflow-visible">
+              <button type="button" class="btn" data-bs-toggle="popover" data-bs-title="ช่วยเหลือ" data-bs-content="ลากไอเทมจากทางซ้ายมือมาใส่ลงในกล่องทางขวามือให้ตรงกับประเภทของกล่องนั่นๆ" data-bs-placement="left" >
+                 <i class="fa-regular fa-circle-question fa-2xl"></i> 
+                </button>
+
+            </div>
+          </div>
+        </div>
             </div>
         </div>
     </div>

@@ -1,11 +1,13 @@
-let timeleft = document.getElementById("timer").innerHTML ;
+let timeleft = document.getElementById("timer").innerHTML;
 const url = "http://localhost/PC-Building/";
 const Seed = document.getElementById("GameSeed").textContent;
-        console.log(Seed);
+const valuenow = document.getElementById('progressbarupdate');
+const progresslive = document.getElementById('progress-live');
+console.log(Seed);
 function countdown() {
     if (timeleft == 0) {
         document.getElementById("timer").innerHTML = "0";
-        
+
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = url + 'GameSystems/Calipoint.php';
@@ -18,10 +20,18 @@ function countdown() {
         form.appendChild(gameid);
         document.body.appendChild(form);
         form.submit();
-    }else {
+    } else {
         document.getElementById("timer").innerHTML = timeleft;
+        var timeTopercent = (timeleft / 120) * 100;
+        console.log(timeTopercent.toFixed());
+        valuenow.setAttribute('aria-valuenow',timeTopercent.toFixed());
+        progresslive.style.width = timeTopercent.toFixed(1) + "%";
+        progresslive.textContent = "Remaining : " + timeTopercent.toFixed() + "%";
+        if (valuenow.getAttribute('aria-valuenow') <= 30) {
+            progresslive.classList.add("text-dark");
+        }
         timeleft--;
-        setTimeout(countdown,1000);
+        setTimeout(countdown, 1000);
     }
 }
 
@@ -67,7 +77,7 @@ dropzone.forEach(dropzone => {
         if (jsonData.type !== dropzoneType) {
             worngcounter += 1;
             console.log(worngcounter);
-            
+
             alert("Dropzone นี้ไม่ใช่ประเภทนี้นะ");
             return worngcounter; // ไม่ให้วาง item ถ้าประเภทไม่ตรงกัน
         }
@@ -98,15 +108,32 @@ dropzone.forEach(dropzone => {
             event.dataTransfer.setData('application/json', data);
             event.target.style.opacity = '0.5';
         });
-        
+
         newElement.addEventListener('dragend', (event) => {
             console.log("Dragend event triggered"); // เพิ่ม console.log เพื่อตรวจสอบ
             event.target.style.opacity = '';
             if (event.target.closest('.dropzone')) {
                 console.log("Item outside dropzone, removing..."); // เพิ่ม console.log
                 event.target.remove();
-                
+
             }
         });
     });
 });
+
+function sendXML() {
+    const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = url + 'GameSystems/Calipoint.php';
+
+        const gameid = document.createElement('input');
+        gameid.type = 'hidden';
+        gameid.name = 'seed';
+        gameid.value = Seed;
+
+        form.appendChild(gameid);
+        document.body.appendChild(form);
+        form.submit();
+}
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));

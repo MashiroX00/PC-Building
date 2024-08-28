@@ -14,7 +14,7 @@
       <div class="modal-body">
       
         <div class="d-grid gap-2">
-          <button onclick="sendXML()" class="btn btn-warning">Fisnish</button>
+          
       <button class="btn btn-primary" data-bs-dismiss="modal">Return to game</button>
         <a href="<?php echo $url?>index.php" class="btn btn-danger">Quit the game</a>
         </div>
