@@ -251,8 +251,9 @@ if ($itemtype == 1) {
         $checksql = "SELECT mainboard.Cpu_socket FROM mainboard WHERE mainboard.id = ? AND mainboard.Cpu_socket = ?";
         $check = $conn->prepare($checksql);
         $check->execute([$mbitem, $lga]);
+        $result = $check->rowCount();
 
-        if ($check) {
+        if ($result > 0) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
             $querytmp->execute([$userid, $point, $Seed]);
@@ -262,7 +263,7 @@ if ($itemtype == 1) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
             $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+15 point");
+            $alerts->setalert("success", "+15/25 point");
         }
     } else {
         $alerts->setalert("error", "Please fill the missing box.");
@@ -284,25 +285,27 @@ if ($itemtype == 1) {
         $checksql = "SELECT Socket FROM cpu WHERE cpu.id = ? AND cpu.Socket = ?";
         $check = $conn->prepare($checksql);
         $check->execute([$cpuitem, $lga]);
+        $result = $check->rowCount();
 
         $checksql1 = "SELECT ddr FROM ram WHERE ram.id = ? AND ram.ddr = ?";
         $check1 = $conn->prepare($checksql1);
         $check1->execute([$rmitem, $ddr]);
+        $result1 = $check1->rowCount();
 
-        if ($check && $check1) {
+        if ($result || $result1 > 0) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
             $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+30 point");
+            $alerts->setalert("success", "+30/30 point");
         } else {
             $point = $point - 15;
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
             $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+15 point");
+            $alerts->setalert("success", "+15/30 point");
         }
     } else {
-        $alerts->setalert("error", "Please the fill missing box.");
+        $alerts->setalert("error", "Please  fill the missing box.");
     }
 } elseif ($itemtype == 3) {
     $itemid = $_POST['ram'] ?? 0;
@@ -320,22 +323,22 @@ if ($itemtype == 1) {
         $checksql = "SELECT Ram_ddr FROM mainboard WHERE mainboard.id = ? AND mainboard.Ram_ddr = ?";
         $check = $conn->prepare($checksql);
         $check->execute([$mbitem, $ddr]);
+        $result = $check->rowCount();
 
-
-        if ($check) {
+        if ($check > 0) {
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
             $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "15 point");
+            $alerts->setalert("success", "+15/15 point");
         } else {
             $point = $point - 5;
             $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
             $querytmp = $conn->prepare($tmp);
             $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "10 point");
+            $alerts->setalert("success", "+10/15 point");
         }
     } else {
-        $alerts->setalert("error", "Please the fill missing box.");
+        $alerts->setalert("error", "Please fill the missing box.");
     }
 } elseif ($itemtype == 4) {
     $itemid = $_POST['storage'] ?? 0;
@@ -345,9 +348,9 @@ if ($itemtype == 1) {
         $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
         $querytmp = $conn->prepare($tmp);
         $querytmp->execute([$userid, $point, $Seed]);
-        $alerts->setalert("success", "+20 point");
+        $alerts->setalert("success", "+20/20 point");
     } else {
-        $alerts->setalert("error", "Please the fill missing box.");
+        $alerts->setalert("error", "Please fill the missing box.");
     }
 } elseif ($itemtype == 5) {
     $itemid = $_POST['psu'] ?? 0;
@@ -356,7 +359,7 @@ if ($itemtype == 1) {
         $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
         $querytmp = $conn->prepare($tmp);
         $querytmp->execute([$userid, $point, $Seed]);
-        $alerts->setalert("success", "+20 point");
+        $alerts->setalert("success", "+20/20 point");
     } else {
         $alerts->setalert("error", "Please fill the missing box.");
     }

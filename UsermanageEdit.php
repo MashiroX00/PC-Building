@@ -8,7 +8,7 @@ if ($_POST['id']) {
     $_SESSION["error"] = "Invalid Item ID";
     header("location: $url" . "itemaddform.php");
 }
-$sql = "SELECT * FROM useraccount WHERE id = (?)";
+$sql = "SELECT * FROM useraccount WHERE user_id = (?)";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$id]);
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -120,7 +120,7 @@ $totalPage = ceil($rows/$pagelimit);
                                             <form method="post" action="<?php echo $url ?>proceed/infodelete.php" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo $Data['head']; ?>?');">
                                                 <input type="hidden" value="<?php echo $Data['id'] ?> " name="id">
                                                 <!-- need to return confirm value to delete -->
-                                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-1"></i>Delete</button>
+                                                <button type="submit" class="btn btn-danger mt-1"><i class="fa-solid fa-trash me-1"></i>Delete</button>
                                             </form>
                                         </td>
                                     </tr>

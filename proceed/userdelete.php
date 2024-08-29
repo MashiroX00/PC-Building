@@ -14,7 +14,7 @@ if ($role == "admin") {
     header("Location:" . $url . "Usermanage.php");
     exit;
 } else {
-    $delete = "DELETE FROM useraccount WHERE id = (?)";
+    $delete = "DELETE FROM useraccount WHERE user_id = (?)";
     $stmt1 = $conn->prepare($delete);
     $stmt1->execute([$id]);
     if ($stmt1) {

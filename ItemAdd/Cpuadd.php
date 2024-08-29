@@ -85,10 +85,15 @@ if (!empty($editid)) {
                 $error1->unsetalert();
                 ?>
                 <form action="<?php echo $url.$trace?>" method="POST" enctype="multipart/form-data">
+                    <?php if (!empty($item['id'])) : ?>
+                        <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-microchip fa-xl"></i></span>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="storage" aria-describedby="basic-addon2" name="id" value="<?php echo $item["id"]; ?>">
+                    </div>
+                    <?php endif?>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-microchip fa-xl"></i></span>
-                        <input type="text" class="form-control" placeholder="Name" aria-label="storage" aria-describedby="basic-addon2" name="name" value="<?php echo $item["id"]; ?>">
-
+                        <input type="text" class="form-control" placeholder="Name" aria-label="storage" aria-describedby="basic-addon2" name="name" value="<?php echo $item["Name"]; ?>">
                     </div>
 
                     <div class="input-group input-group-lg mb-3">
@@ -120,6 +125,7 @@ if (!empty($editid)) {
                     <div class="input-group input-group-lg mb-3">
                         <label class="input-group-text" for="inputGroupFile01"><i class="fa-solid fa-image fa-xl"></i></label>
                         <input type="file" class="form-control" id="inputGroupFile01" name="image">
+                        <input type="hidden" name="path" value="<?php echo $item["img"]?>">
                     </div>
 
                     <div class="input-group input-group-lg ">
