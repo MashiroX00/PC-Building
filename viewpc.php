@@ -54,6 +54,30 @@ if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION
 } else {
     $state = false;
 }
+
+$ranksql = "SELECT useraccount.username, MAX(score) as max_score FROM `career` INNER JOIN useraccount ON useraccount.user_id = career.user_id GROUP BY career.user_id ORDER BY max_score DESC LIMIT 5";
+$queryrank = $conn->prepare($ranksql);
+$queryrank->execute();
+$leaderboard = $queryrank->fetchAll(PDO::FETCH_ASSOC);
+$leaderboardrows = $queryrank->rowCount();
+$no = 1;
+$qno = 1;
+$inleader = false;
+$userName = $_SESSION['user'] ?? $_SESSION['admin'];
+foreach ($leaderboard as $user) {
+    if ($user['username'] == $userName) {
+        $inleader = true;
+        
+        break;
+    }
+    $qno++;
+}
+$message;
+if ($inleader) {
+    $message = "คุณติดอันดับที่ {$qno}";
+}else {
+    $message = "ดูเหมือนว่าคุณจะยังไม่ติดอันดับนะ พยายามเข้า!!";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +89,12 @@ if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION
     <style>
         body {
             background-color: #1d0c1b !important;
+            background-image: url(./src/assets/View\ PC\ Bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        table {
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
         }
     </style>
     <?php include ROOT_DIR . "/packlink.php"; ?>
@@ -73,7 +103,15 @@ if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION
 <body>
     <?php include ROOT_DIR . "/proceed/navdisplay.php"; ?>
     <div class="container">
-        <table class="table table-hover mt-5 text-white">
+        <div>
+            <p class="text text-white fs-4">
+                Leaderboard/Career.
+            </p>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="displaymode" style="width: 75px; height:35px;">
+            </div>
+        </div>
+        <table class="table table-hover mt-5 text-white d-none" id="tables">
             <thead>
                 <tr>
                     <th scope="col">Game ID</th>
@@ -117,11 +155,11 @@ if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION
                             <td><?php echo htmlspecialchars($q['Game_type']); ?></td>
                             <td><?php echo htmlspecialchars($q['score']); ?></td>
                             <td><?php echo htmlspecialchars($timeDisplay); ?></td>
-                            <?php if (htmlspecialchars($q['Game_type']) == "Timer") :?>
-                            <td><button href="#" class="btn btn-outline-danger" disabled>More info</button></td>
-                            <?php else :?>
+                            <?php if (htmlspecialchars($q['Game_type']) == "Timer") : ?>
+                                <td><button href="#" class="btn btn-outline-danger" disabled>More info</button></td>
+                            <?php else : ?>
                                 <td><a href="#" class="btn btn-outline-primary">More info</a></td>
-                            <?php endif?>
+                            <?php endif ?>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -131,8 +169,35 @@ if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION
                 <?php endif; ?>
             </tbody>
         </table>
+        <table class="table table-hover mt-5 text-white" style="width: 30vw;" id="ranks">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($leaderboardrows > 0) :?>
+                    <?php foreach ($leaderboard as $userrank) :?>
+                        <tr>
+                    <th scope="row"><?php echo $no?></th>
+                    <td><?php echo $userrank['username']?></td>
+                    <td><?php echo $userrank['max_score']?></td>
+                </tr>
+                <?php $no++?>
+                        <?php endforeach;?>
+                        <?php else :?>
+                            <th scope="row" colspan="3" class="table-warning text-center">ไม่พบข้อมูล.</th>
+                    <?php endif;?>
+            </tbody>
+            <caption>
+                <?php echo $message?>
+  </caption>
+        </table>
     </div>
     <?php include ROOT_DIR . "/packlink2.php"; ?>
+    <script src="career.js"></script>
 </body>
 
 </html>

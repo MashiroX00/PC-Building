@@ -20,8 +20,7 @@ session_start();
     <?php
         include "./proceed/navdisplay.php";
     ?>
-    <p class="fs-3 text text-center mt-5" style="margin-bottom: -13rem;">Choose Gamemode</p>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100" style="margin-top: -100px;">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100" style="margin-top: -90px;">
     <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card border-0 h-100">
