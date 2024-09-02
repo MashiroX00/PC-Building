@@ -63,14 +63,16 @@ $leaderboardrows = $queryrank->rowCount();
 $no = 1;
 $qno = 1;
 $inleader = false;
-$userName = $_SESSION['user'] ?? $_SESSION['admin'];
-foreach ($leaderboard as $user) {
-    if ($user['username'] == $userName) {
-        $inleader = true;
-        
-        break;
+$userName = $_SESSION['user'] ?? $_SESSION['admin'] ?? null;
+if (!empty($userName)) {
+    foreach ($leaderboard as $user) {
+        if ($user['username'] == $userName) {
+            $inleader = true;
+            
+            break;
+        }
+        $qno++;
     }
-    $qno++;
 }
 $message;
 if ($inleader) {
@@ -92,6 +94,7 @@ if ($inleader) {
             background-image: url(./src/assets/View\ PC\ Bg.png);
             background-repeat: no-repeat;
             background-size: cover;
+            backdrop-filter: blur(7px);
         }
         table {
             box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;

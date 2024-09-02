@@ -33,11 +33,12 @@ body {
 .imgslide {
     height: 400px;
     object-fit: cover;
+    filter: blur(2px);
 }
 .boxsha {
     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
 .ti1 {
-    color: rgb(0, 51, 255);
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }

@@ -44,24 +44,21 @@ $alerts = new alert();
   </div>
   <div class="carousel-inner boxsha rounded-4">
     <div class="carousel-item active ">
-      <img src="./infoimg/computer.jpg" class="d-block w-100 imgslide rounded-4 " alt="...">
+      <img src="./src/assets/computer.jpg" class="d-block w-100 imgslide rounded-4 " alt="...">
       <div class="carousel-caption d-none d-md-block text-black">
         <h5><a href="<?php echo $url?>infomation.php" class="ti1">คอมพิวเตอร์ คืออะไร?</a></h5>
-        <p></p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="./src/assets/Game Background.png" class="d-block w-100 imgslide rounded-4" alt="...">
+      <img src="./infoimg/IMG_9582.jpg" class="d-block w-100 imgslide rounded-4" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+      <h5><a href="<?php echo $url?>infomation.php" class="ti1">แรม(RAM) คืออะไร?</a></h5>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="./src/assets/Game BG4.png" class="d-block w-100 imgslide rounded-4" alt="...">
+      <img src="./infoimg/IMG_9588.jpg" class="d-block w-100 imgslide rounded-4" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+      <h5><a href="<?php echo $url?>infomation.php" class="ti1">เมนเบอร์(Mainbaord) คืออะไร?</a></h5>
       </div>
     </div>
   </div>
