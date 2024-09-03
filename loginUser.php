@@ -26,9 +26,9 @@ include "./conectdb.php";
     ?>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-lg-4 col-md-3">
+            <div class="col-md-3">
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-md-6">
                 <div class="texthead">
                     <h4 class="text-center">Login</h4>
                     <h4 class="text-center mb-4">ลงชื่อเข้าใช้</h4>
@@ -86,7 +86,7 @@ include "./conectdb.php";
 
             </div>
 
-            <div class="col-lg-4 col-md-3">
+            <div class="col-md-4 ">
 
             </div>
         </div>

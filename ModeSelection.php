@@ -20,8 +20,8 @@ session_start();
     <?php
         include "./proceed/navdisplay.php";
     ?>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100" style="margin-top: -90px;">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="container mt-5 position-relative">
+    <div class="row row-cols-md-3 g-4 position-absolute" style="top: 10em;">
   <div class="col">
     <div class="card border-0 h-100">
       <img src="<?php echo $url;?>src/assets/Game BG4.png" class="card-img-top bg-img" alt="background" width="416px" height="234px">
@@ -63,13 +63,14 @@ session_start();
     
   </div>
 </div>
-    </div>
-    <div class="container d-flex justify-content-center align-items-center">
-      <div class="d-grid gap-2 col-4 mx-auto lay">
+<div class="position-absolute ab">
+      <div class="d-grid gap-2 col-4 mx-auto mt-4">
       <a href="<?php echo $url;?> "index.php"" class="btn btnhover"><img src="./src//assets/return button.png" alt="" srcset=""></a>
       </div>
         
     </div>
+    </div>
+    
     
 
 <script src="<?php echo $url;?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>

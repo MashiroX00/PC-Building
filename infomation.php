@@ -25,7 +25,7 @@ $rows = $conn->query($sql)->fetchColumn();
     include "./proceed/navdisplay.php";
     ?>
     <div class="container mt-5">
-        <div class="row">
+        <div class="row row-cols-1">
             <?php if ($rows > 0) : ?>
                 <?php foreach ($query as $Data) { ?>
                     <?php
@@ -42,7 +42,7 @@ $rows = $conn->query($sql)->fetchColumn();
                         $timeDisplay = floor($timeElapsed / 86400) . " วัน";
                     }
                     ?>
-                    <div class="col-4 col-lg-11 mb-2">
+                    <div class="col-lg-11 mb-2">
                         <div class="card mb-3 card1">
                             <div class="row g-0">
                                 <div class="col-md-4 minimg">

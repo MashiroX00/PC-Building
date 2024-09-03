@@ -29,12 +29,44 @@ body {
 .btnhover img:hover {
   scale: 1.1;
 }
-.lay {
-  margin-top: -40vh;
-}
 
-@media only screen and (max-height: 900px) {
-  .lay {
-    margin-top: -30vh;
+.ab {
+  top: 55vh; 
+  left: 20vw;
+}
+@media only screen and (max-width: 1300px) {
+  .ab {
+    top: 60vh; 
+    left: 23vw;
+    
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .ab {
+    top: 57vh; 
+    left: 20vw;
+    
+  }
+}
+@media only screen and (max-width: 900px) {
+  .ab {
+    top: 59vh; 
+    left: 12vw;
+    
+  }
+}
+@media only screen and (max-width: 730px) {
+  .ab {
+    top: 67vh; 
+    left: 6vw;
+    
+  }
+}
+@media only screen and (max-width: 550px) {
+  .ab {
+    top: 70vh; 
+    left: 6vw;
+    scale: 0.8;
+    
   }
 }

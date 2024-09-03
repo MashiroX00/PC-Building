@@ -197,7 +197,6 @@ foreach ($tables as $table => $columns) {
         <div class="dropzone box-3" id="dropzone3" data-item-type="ram">Ram</div>
         <div class="dropzone box-5" id="dropzone4" data-item-type="storage">Storage</div>
         <div class="dropzone box-4" id="dropzone5" data-item-type="psu">Power Supply</div>
-
       </div>
       <div class="col-4 col-lg-1">
         <div class="row">

@@ -10,14 +10,10 @@ include "./conectdb.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="<?php echo $url; ?>node_modules//bootstrap//dist/css/bootstrap.min.css">
-    <script src="<?php echo $url; ?>node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/fontawesome.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/brands.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/solid.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>font.css">
     <link rel="stylesheet" href="<?php echo $url; ?>css/login.css">
-    <link rel="icon" href="<?php echo $url;?>src/assets/RapeeMEd2-removebg-preview (1).png">
+    <?php 
+        include ROOT_DIR . '/packlink.php';
+    ?>
 </head>
 
 <body>
@@ -26,9 +22,9 @@ include "./conectdb.php";
     ?>
     <div class="container mt-1">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 ">
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-6 ">
                 <div class="texthead">
                     <h4 class="text-center">Register</h4>
                     <h4 class="text-center mb-4">สมัครสมาชิก</h4>
@@ -67,18 +63,19 @@ include "./conectdb.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="">
+                        <div class="row g-1">
+                        <div class="col-md">
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="input-group-text"><i class="fa-solid fa-quote-left"></i></i></span>
                                 <div class=" form-floating">
                                     <input type="text" class="form-control" placeholder="First Name" name="Fname">
                                     <label for="Fname" class="form-label">First Name</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="">
+                        <div class="col-md">
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="input-group-text"><i class="fa-solid fa-quote-left"></i></i></span>
                                 <div class=" form-floating">
                                     <input type="text" class="form-control" placeholder="Last Name" name="Lname">
                                     <label for="Lname" class="form-label">Last Name</label>
@@ -86,6 +83,7 @@ include "./conectdb.php";
                             </div>
                         </div>
                         
+                        </div>
                         <div class="">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
@@ -106,7 +104,7 @@ include "./conectdb.php";
                         </div>
                         <div class="">
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
                                 <div class=" form-floating">
                                     <input type="text" class="form-control" placeholder="Tel." name="tel">
                                     <label for="Tel" class="form-label">Tel.</label>
@@ -133,7 +131,7 @@ include "./conectdb.php";
 
             </div>
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4">
 
             </div>
         </div>
