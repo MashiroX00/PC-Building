@@ -20,7 +20,7 @@
         exit;
     }
     $hashPassword = password_hash($pass,PASSWORD_DEFAULT) or die("Password Hashing error");
-    $sql = "UPDATE useraccount SET useraccount.password = ? WHERE useraccount.id = ?";
+    $sql = "UPDATE useraccount SET useraccount.password = ? WHERE useraccount.user_id = ?";
     $Update = $conn->prepare($sql);
     $Update->execute([$hashPassword,$id]);
 

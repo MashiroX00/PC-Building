@@ -23,7 +23,7 @@ $totalPage = ceil($rows/$pagelimit);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item management</title>
+    <title>Imfomation management</title>
     <?php include './packlink.php' ?>
     <style>
         body {

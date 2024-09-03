@@ -10,7 +10,7 @@ if (!empty($_POST['username']) and !empty($_POST['email'])) {
     header("Location: {$url}PasswordResetUserPrompt.php");
     exit;
 }
-$sql = "SELECT useraccount.id FROM useraccount WHERE username = ? AND email = ?";
+$sql = "SELECT useraccount.user_id FROM useraccount WHERE username = ? AND email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$username,$email]);
 $query = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ if ($row == 0) {
     exit;
 }
 foreach ($query as $data) {
-    $id = $data['id'];
+    $id = $data['user_id'];
 }
 
 ?>

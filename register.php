@@ -17,6 +17,7 @@ include "./conectdb.php";
     <link rel="stylesheet" href="<?php echo $url; ?>fontawesome-free-6.5.1-web/css/solid.css">
     <link rel="stylesheet" href="<?php echo $url; ?>font.css">
     <link rel="stylesheet" href="<?php echo $url; ?>css/login.css">
+    <link rel="icon" href="<?php echo $url;?>src/assets/RapeeMEd2-removebg-preview (1).png">
 </head>
 
 <body>
