@@ -9,6 +9,7 @@
       Basic PC Building Simulator
     </a>
     <div class="collapse navbar-collapse justify-content-end">
+    <a href="<?php echo $url . "index.php"; ?>" class="btn btn-light me-2" style="width: 8%;">Home</a>
       <a href="<?php echo $url . "loginUser.php"; ?>" class="btn btn-light me-2" style="width: 8%;">Login</a>
       <a href="<?php echo $url . "register.php"; ?>" class="btn btn-light me-2" style="width: 8%;">Register</a>
     </div>
