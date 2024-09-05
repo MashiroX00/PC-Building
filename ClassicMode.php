@@ -176,7 +176,9 @@ foreach ($tables as $table => $columns) {
               </button>
             </h2>
             <div id="flush-collapsefift" class="accordion-collapse collapse" aria-labelledby="flush-headingfift" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body"><?php foreach ($psu as $pu) { ?>
+              <div class="accordion-body">
+              <ul class="list-group list-group-flush">
+                <?php foreach ($psu as $pu) { ?>
                   <li class="list-group-item">
                     <div class="draggable" id="dragitem1" draggable="true" data-info='{"id" : "<?php echo $pu['id']; ?>","name" : "<?php echo $pu['Name']; ?>", "type" : "psu", "picture" : "<?php echo $pu['picture'] ?>"}'>
                       <img src="<?php echo $url . $pu['picture'] ?>" alt="" width="100px" draggable="false"><br>
@@ -184,6 +186,7 @@ foreach ($tables as $table => $columns) {
                       <span class="text fs-6">Watt: <?php echo $pu['watt'] ?></span><br>
                     </div>
                   </li>
+              
                 <?php }; ?>
                 </ul>
               </div>
