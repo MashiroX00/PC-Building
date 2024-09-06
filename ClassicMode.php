@@ -67,7 +67,6 @@ foreach ($tables as $table => $columns) {
 </head>
 
 <body>
-
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-2 col-lg-2 border vh-100 overflow-y-scroll sc" style="background-color: #D9D9D9;">

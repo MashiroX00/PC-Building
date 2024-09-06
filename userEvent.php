@@ -110,6 +110,7 @@ $totalPage = ceil($rows / $pagelimit);
         $mtclock = $mtclock[1] + $mtclock[0];
         $endtime = $mtclock;
         $totalPageLoadTime = ($endtime - $startTime);
+        $totalPageLoadTime = round($totalPageLoadTime,3);
         echo "<p class='text-white'>หน้านี้ใช้เวลาโหลด {$totalPageLoadTime} วินาที</p>"  
     ?>
     </div>
