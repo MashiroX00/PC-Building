@@ -18,6 +18,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'runFunction') {
         return [
             'cpuUsage' => $cpuUsage,
             'memoryUsage' => round($memoryUsagePercent, 2),
+            'totalmemory' => $usedMemory,
+            'maxmemory' => $totalMemory,
         ];
     }
 

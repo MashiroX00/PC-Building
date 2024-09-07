@@ -55,18 +55,18 @@ $score = array_column($Statistic, 'score');
                 .then(data => {
                     var cpuload = document.getElementById('cpu1');
                     var memoload = document.getElementById('memory1');
+                    var numemo = document.getElementById('numbericmemory');
                     cpuload.setAttribute('aria-valuenow', data.cpuUsage);
                     cpuload.style.width = data.cpuUsage + "%";
                     cpuload.textContent = data.cpuUsage + "%";
                     memoload.setAttribute('aria-valuenow', data.memoryUsage);
                     memoload.style.width = data.memoryUsage + "%";
                     memoload.textContent = data.memoryUsage + "%";
+                    numemo.textContent = (data.totalmemory / 1024).toFixed(2) + "/" + (data.maxmemory / 1024).toFixed(0) + "GB";
+                    console.log("Fectching")
                 })
                 .catch(error => console.error('Error fetching system usage:', error));
         }
-
-        // เรียกใช้ fetchSystemUsage ทุกๆ 10 วินาที
-        setInterval(fetchSystemUsage, 1000);
 
         // เรียกใช้ฟังก์ชันแรกครั้งแรกเมื่อโหลดหน้าเว็บ
         window.onload = fetchSystemUsage;
@@ -84,10 +84,12 @@ $score = array_column($Statistic, 'score');
                             console.log('write success');
                             document.getElementById('Load').style.display = 'block';
                             document.getElementById('loading').style.display = 'none';
+                            fetchSystemUsage();
                         } else {
                             console.log('Failed to write data.');
                             document.getElementById('Load').style.display = 'block';
                             document.getElementById('loading').style.display = 'none';
+                            fetchSystemUsage();
                         }
                     } catch (e) {
                         console.error('Parsing error:', e);
@@ -170,12 +172,12 @@ $score = array_column($Statistic, 'score');
                     <div class="card-body">
                         <h5 class="card-title">Monitor(Client-side)<i class="fa-solid fa-gauge"></i></h5>
                         <p class="card-text"><i class="fa-solid fa-memory"></i> Memory Usege:
-                        <div class="progress">
+                        <div class="progress" style="width: 80%;">
                             <div class="progress-bar overflow-visible progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="memory">100%</div>
                         </div>
                         </p>
                         <p class="card-text"><i class="fa-solid fa-microchip"></i> Cpu Usege:
-                        <div class="progress">
+                        <div class="progress" style="width: 80%;">
                             <div class="progress-bar text-dark overflow-visible progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="cpu">100%</div>
                         </div>
                         </p>
@@ -186,13 +188,16 @@ $score = array_column($Statistic, 'score');
                 <div class="card h-100 bg-transparent text-white">
                     <div class="card-body">
                         <h5 class="card-title">Monitor(Server-side) <i class="fa-solid fa-gauge"></i></h5>
-                        <p class="card-text"><i class="fa-solid fa-memory"></i> Memory Usege:
-                        <div class="progress">
+                        <p class="card-text"><i class="fa-solid fa-memory"></i> Memory Usege: <span class="card-text" id="numbericmemory">
+
+                            </span>
+                        <div class="progress" style="width: 80%;">
                             <div class="progress-bar overflow-visible progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="memory1">100%</div>
                         </div>
+
                         </p>
                         <p class="card-text"><i class="fa-solid fa-microchip"></i> Cpu Usege:
-                        <div class="progress">
+                        <div class="progress" style="width: 80%;">
                             <div class="progress-bar text-dark overflow-visible progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="cpu1">100%</div>
                         </div>
                         <button onclick="callPhpFunction()" class="btn btn-primary mt-3" id="Load">Run Server Load</button>
@@ -201,7 +206,7 @@ $score = array_column($Statistic, 'score');
                         </div>
                         </p>
                         <p class="card-text" id="timer">
-
+                            
                         </p>
                     </div>
                 </div>
@@ -214,13 +219,29 @@ $score = array_column($Statistic, 'score');
         var btnload1 = document.getElementById('Load');
         const result = document.getElementById('result');
         const statusload = document.getElementById('loading');
+        var timeleft = 30;
         btnload1.addEventListener('click', (event) => {
             event.target.style.display = 'none';
             statusload.style.display = 'block';
-        })
 
-        setInterval(callPhpFunction,10000);
-        
+        })
+        async function load() {
+                    await callPhpFunction();
+                }
+        function reload() {
+            
+            if (timeleft == 0) {
+                timeleft += 30;
+                load();
+                document.getElementById('timer').innerHTML = "จะโหลดทรัพยากรใหม่ใน " + timeleft + " วินาที";
+                setTimeout(reload,1000)
+            }else {
+                timeleft--;
+                document.getElementById('timer').innerHTML = "จะโหลดทรัพยากรใหม่ใน " + timeleft + " วินาที";
+                setTimeout(reload,1000);
+            }
+        }
+        reload();
     </script>
 </body>
 

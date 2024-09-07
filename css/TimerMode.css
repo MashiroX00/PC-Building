@@ -13,7 +13,7 @@
     position: absolute;
     width: 100px; /* ขนาดของกล่องสี่เหลี่ยม */
     height: 100px; /* ขนาดของกล่องสี่เหลี่ยม */
-    background-color: rgba(0, 255, 255, 0.5); /* สีและความโปร่งใสของกล่อง */
+    background-color: rgb(9, 212, 212); /* สีและความโปร่งใสของกล่อง */
     border-radius: 15px;
     text-align: center;
     align-content: center;
@@ -37,6 +37,86 @@
 .box-4 { top: 791px; left: 352px; }
 .box-5 { top: 769px; left: 1050px; }
 /* .box-6 { top: 500px; left: 300px; } */
+@media screen and (max-width: 1670px) {
+    .box-1 {
+        top: 3vh;
+        left: 22.5vw;
+    }
+
+    .box-2 {
+        top: 320px;
+        left: 12.5vw;
+    }
+
+    .box-3 {
+        top: 157px;
+        left: 56.7vw;
+    }
+
+    .box-4 {
+        top: 791px;
+        left: 15.5vw;
+    }
+
+    .box-5 {
+        top: 769px;
+        left: 57.5vw;
+    }
+}
+
+@media screen and (max-width: 1430px) {
+    .box-1 {
+        top: 3vh;
+        left: 19.9vw;
+    }
+
+    .box-2 {
+        top: 320px;
+        left: 8.5vw;
+    }
+
+    .box-3 {
+        top: 157px;
+        left: 59.7vw;
+    }
+
+    .box-4 {
+        top: 791px;
+        left: 11.7vw;
+    }
+
+    .box-5 {
+        top: 769px;
+        left: 60.5vw;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    .box-1 {
+        top: 4.5vh;
+        left: 17.3vw;
+    }
+
+    .box-2 {
+        top: 35.5vh;
+        left: 3.5vw;
+    }
+
+    .box-3 {
+        top: 18vh;
+        left: 63vw;
+    }
+
+    .box-4 {
+        top: 85vh;
+        left: 7.5vw;
+    }
+
+    .box-5 {
+        top: 82.5vh;
+        left: 64.5vw;
+    }
+}
 
 .sc {
     scrollbar-width: thin;
