@@ -1,6 +1,7 @@
 <?php
 //url container
-$url = "http://localhost/PC-Building/";
+$hostip = $_SERVER['HTTP_HOST'];
+$url = "http://$hostip/PC-Building/";
 define('ROOT_DIR', dirname(__FILE__));
 
 $servername = "localhost";
