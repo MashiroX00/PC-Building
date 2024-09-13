@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "./conectdb.php";
-include __DIR__ . "/Components/alert.php";
+require_once __DIR__ . "/Components/alert.php";
 $alerts = new alert();
 ?>
 <!DOCTYPE html>
@@ -11,6 +11,8 @@ $alerts = new alert();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PC Building Simulator</title>
+  <style>
+  </style>
   <link rel="stylesheet" href="style.css">
   <?php include './packlink.php' ?>
 </head>

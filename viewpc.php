@@ -4,7 +4,9 @@ include "./conectdb.php";
 require_once ROOT_DIR . "/Components/alert.php";
 $state = false;
 $alerts = new alert();
-
+$pagelimit = 5;
+isset($_GET['page']) ? $page = $_GET['page'] : $page = 1;
+$start = ($page - 1) * $pagelimit;
 if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION['user']) || !empty($_SESSION['admin']))) {
     $state = true;
     $username = $_SESSION['user'] ?? $_SESSION['admin'];
@@ -19,11 +21,17 @@ if ((isset($_SESSION['user']) || isset($_SESSION['admin'])) && (!empty($_SESSION
         $userID = $userData['user_id'];
 
         // ดึงข้อมูล career ทั้งหมดของผู้ใช้
-        $sql1 = "SELECT * FROM career WHERE user_id = ?";
+        $sql1 = "SELECT * FROM career WHERE user_id = ? LIMIT {$start},{$pagelimit}";
         $career = $conn->prepare($sql1);
         $career->execute([$userID]);
         $careerQuery = $career->fetchAll(PDO::FETCH_ASSOC);
-
+        $sql1 = "SELECT * FROM career WHERE user_id = ?";
+        $stmt1 = $conn->prepare($sql1);
+        $stmt1->execute([$userID]);
+        $row = $stmt1->fetchColumn();
+        $rows = $stmt1->rowCount();
+        $totalPage = ceil($rows / $pagelimit);
+        
         if (!empty($careerQuery)) {
             foreach ($careerQuery as &$query) {
                 $components = [
@@ -198,6 +206,23 @@ if ($inleader) {
                 <?php echo $message?>
   </caption>
         </table>
+        <nav aria-label="Page navigation example" class="d-none" id="itemPage">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="<?php $url?>viewpc.php?page=1" aria-label="Previous" class="page-link text-black">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
+                                <li class="page-item"><a href="<?php $url?>viewpc.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
+                            <?php } ?>
+                            <li class="page-item">
+                                <a href="<?php $url?>viewpc.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
     </div>
     <?php include ROOT_DIR . "/packlink2.php"; ?>
     <script src="career.js"></script>

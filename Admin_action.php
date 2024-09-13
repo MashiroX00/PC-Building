@@ -2,6 +2,8 @@
 session_start();
 include './conectdb.php';
 include './proceed/permission.php';
+include ROOT_DIR . "/Components/alert.php";
+$utils = new alert(); 
 $sql = $conn->prepare("SELECT * FROM useraccount");
 $sql->execute();
 $rowcount = $sql->rowCount();
@@ -204,10 +206,20 @@ $score = array_column($Statistic, 'score');
                         <div class="spinner-grow text-primary mt-3" role="status" style="display: none;" id="loading">
                             <span class="visually-hidden">Loading...</span>
                         </div>
+                        <button onclick="reloadpage()" class="btn btn-primary mt-3">Force Reload</button>
                         </p>
                         <p class="card-text" id="timer">
                             
                         </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3 mb-4">
+                <div class="card h-100 bg-transparent text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Server IP <i class="fa-solid fa-map-pin"></i></i></h5>
+                        <p class="card-text">IP : <?php echo $utils->getserverip();?></p>
+                        
                     </div>
                 </div>
             </div>
@@ -242,6 +254,10 @@ $score = array_column($Statistic, 'score');
             }
         }
         reload();
+
+        function reloadpage() {
+            window.location.href = window.location.href + '?cachebuster=' + new Date().getTime();
+        }
     </script>
 </body>
 
