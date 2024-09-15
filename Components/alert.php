@@ -21,6 +21,7 @@
             return $this->redirurl;
         }
 
+
         public function setalert($type,$message) {
             $this->type = $type;
             $this->message = $message;

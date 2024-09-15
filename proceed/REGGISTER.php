@@ -1,7 +1,8 @@
 <?php
     session_start();
     include '../conectdb.php';
-
+    require ROOT_DIR . "/Components/alert.php";
+    $util = new alert();
     $_POST['username'] ? $username = $_POST['username'] : header("Location:../register.php");
     $_POST['email'] ? $email = $_POST['email'] : header("Location:../register.php");
     $_POST['password'] ? $pass = $_POST['password'] : header("Location:../register.php");
@@ -33,7 +34,8 @@
         $sql = $conn->prepare("INSERT INTO useraccount (username,email,password,firstname,lastname,tel,role) VALUES (?,?,?,?,?,?,?)");
         $sql->execute([$username,$email,$encrptPassword,$Fname,$Lname,$Tel,$role]);
         $_SESSION["success"] = "Successful Register";
-        header("Location: ../register.php");
+        $util->CreSession("Shoot",true);
+        header("Location: ../loginUser.php");
     }else {
         $_SESSION["error"] = "Password not match";
         header("Location: ../register.php");

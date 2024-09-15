@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "./conectdb.php";
+require ROOT_DIR . "/Components/alert.php";
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +92,6 @@ include "./conectdb.php";
             </div>
         </div>
     </div>
-
     <script src="<?php echo $url; ?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?php echo $url; ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
