@@ -1,7 +1,10 @@
 
-const data = document.querySelectorAll(".ID");
-const url = "http://localhost/PC-Building/";
+require('dotenv').config({ path: path.resolve(__dirname, '../.env')});
 
+const primaryurl = window.location.origin;
+const app = "/PC-Building/"
+const data = document.querySelectorAll(".ID");
+const url = primaryurl + app;
 function Save() {
     const items = [];
     data.forEach(item => {

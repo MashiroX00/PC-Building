@@ -1,7 +1,15 @@
 <?php
+//env loader
+require 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 //url container
+$Protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 $hostip = $_SERVER['HTTP_HOST'];
-$url = "http://$hostip/PC-Building/";
+$primaryurl =  $Protocol."://".$hostip;
+$path = $_ENV['APP'];
+$url = $primaryurl.$path;
 define('ROOT_DIR', dirname(__FILE__));
 
 $servername = "localhost";

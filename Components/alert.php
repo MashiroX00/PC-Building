@@ -9,11 +9,12 @@
         private $RawLOG;
         private $SessionName;
         private $SessionMessage;
-
+        private $protocol;
 
         public function __construct() {
-           $this->ip = $_SERVER['HTTP_HOST'];
-           $this->redirurl = "http://{$this->ip}/PC-Building/";
+            $this->protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+            $this->ip = $_SERVER['HTTP_HOST'];
+            $this->redirurl = $this->protocol."://".$this->ip."/PC-Building/";
         }
 
         public function getserverip() {
@@ -83,7 +84,7 @@
         //redir
         public function header($url) {
             $this->urls = $url;
-            header("Location: {$this->redirurl}{$url}");
+            header("Location: {$this->redirurl}{$this->urls}");
         }
 
         public function Logger($message) {

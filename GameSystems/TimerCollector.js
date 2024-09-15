@@ -1,8 +1,11 @@
+const primaryurl = window.location.origin;
+const app = "/PC-Building/"
 let timeleft = document.getElementById("timer").innerHTML;
-const url = "http://localhost/PC-Building/";
+const url = primaryurl + app;
 const Seed = document.getElementById("GameSeed").textContent;
 const valuenow = document.getElementById('progressbarupdate');
 const progresslive = document.getElementById('progress-live');
+console.log(url);
 console.log(Seed);
 function countdown() {
     if (timeleft == 0) {
