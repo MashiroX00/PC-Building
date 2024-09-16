@@ -15,7 +15,7 @@ $stmt1 = $conn->prepare($sql1);
 $stmt1->execute();
 $row = $conn->query($sql1)->fetchColumn();
 $rows = $stmt1->rowCount();
-$totalPage = ceil($rows/$pagelimit);
+$totalPage = ceil($rows / $pagelimit);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,11 +37,11 @@ $totalPage = ceil($rows/$pagelimit);
     <div class="container">
         <div class="row">
             <div class="col-4 col-lg-12">
-                <h3 class="text-white mt-5">Welcome <?php echo $_SESSION['admin']?> to Infomation Management.</h3>
-                
+                <h3 class="text-white mt-5">Welcome <?php echo $_SESSION['admin'] ?> to Infomation Management.</h3>
+
             </div>
             <div class="col-4 col-lg-6">
-            <?php if (isset($_SESSION["success"])) { ?>
+                <?php if (isset($_SESSION["success"])) { ?>
                     <div class="alert alert-success">
                         <?php
                         echo $_SESSION["success"];
@@ -57,8 +57,8 @@ $totalPage = ceil($rows/$pagelimit);
                         ?>
                     </div>
                 <?php } ?>
-                <form action="<?php $url;?>proceed/info.php" method="post" enctype="multipart/form-data">
-                <div class="input-group mb-3">
+                <form action="<?php $url; ?>proceed/info.php" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-font"></i></span>
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingInput" placeholder="header" name="Header">
@@ -86,7 +86,7 @@ $totalPage = ceil($rows/$pagelimit);
                 <h3 class="text-white mt-5">
                     <p>Infomation</p>
                 </h3>
-            <div class="table-responsive mt-3">
+                <div class="table-responsive mt-3">
                     <table class="table table-hover ">
                         <thead>
                             <tr>
@@ -143,24 +143,24 @@ $totalPage = ceil($rows/$pagelimit);
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a href="<?php $url?>infomationAdd.php?page=1" aria-label="Previous" class="page-link text-black">
+                                <a href="<?php $url ?>infomationAdd.php?page=1" aria-label="Previous" class="page-link text-black">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
                             <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
-                                <li class="page-item"><a href="<?php $url?>infomationAdd.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
+                                <li class="page-item"><a href="<?php $url ?>infomationAdd.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
                             <?php } ?>
                             <li class="page-item">
-                                <a href="<?php $url?>infomationAdd.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
+                                <a href="<?php $url ?>infomationAdd.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
                         </ul>
                     </nav>
+                </div>
             </div>
         </div>
-    </div>
-    <?php include './packlink2.php' ?>
+        <?php include './packlink2.php' ?>
 </body>
 
 </html>

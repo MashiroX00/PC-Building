@@ -1,17 +1,17 @@
 body {
-    background-image: url(./src/assets/View\ PC\ Bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  background-image: url(./src/assets/View\ PC\ Bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 li.borderless {
-    border-top: 0 none;
+  border-top: 0 none;
 }
 .cycle {
-    border-radius: 100%;
-    width: 50%;
+  border-radius: 100%;
+  width: 50%;
 }
 .card-bg-glass {
-    backdrop-filter: blur(20px);
-    box-shadow: #1d0c1b 0px 22px 70px 4px;
+  backdrop-filter: blur(20px);
+  box-shadow: #1d0c1b 0px 22px 70px 4px;
 }

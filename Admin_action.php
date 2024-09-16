@@ -49,7 +49,9 @@ $score = array_column($Statistic, 'score');
     <?php include './packlink.php'; ?>
     <link rel="stylesheet" href="<?php echo $url; ?>css/admin.css">
     <script>
-        const url1 = "http://localhost/PC-Building/";
+const primaryurl = window.location.origin;
+const app = "/PC-Building/";
+        const url1 = primaryurl + app;
 
         function fetchSystemUsage() {
             fetch(url1 + 'Components/system_usage.json')
@@ -155,7 +157,7 @@ $score = array_column($Statistic, 'score');
             <div class="col-4 col-sm-3 mb-4">
                 <div class="card h-100 bg-transparent text-white">
                     <div class="card-body">
-                        <h5 class="card-title">Total User Registe <i class="fa-solid fa-user"></i>r</h5>
+                        <h5 class="card-title">Total User Register <i class="fa-solid fa-user"></i></h5>
                         <p class="card-text">Now : <?php echo $rowcount ?> User</p>
                     </div>
                 </div>

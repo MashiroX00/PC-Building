@@ -35,7 +35,7 @@ if ($username != "") {
     $stmt2 = $conn->prepare($sql3);
     $stmt2->execute([$id]);
     $rows = $stmt2->rowCount();
-    $totalPage = ceil($rows/$pagelimit);
+    $totalPage = ceil($rows / $pagelimit);
     $status = 1;
 }
 ?>

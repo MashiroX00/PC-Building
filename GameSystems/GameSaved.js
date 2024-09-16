@@ -1,5 +1,5 @@
 
-require('dotenv').config({ path: path.resolve(__dirname, '../.env')});
+// require('dotenv').config({ path: path.resolve(__dirname, '../.env')});
 
 const primaryurl = window.location.origin;
 const app = "/PC-Building/"

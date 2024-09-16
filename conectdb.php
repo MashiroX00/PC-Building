@@ -21,8 +21,11 @@ try {
   $conn = new PDO("mysql:host=$servername;dbname=$myDB", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "<script>console.log('Success');</script>";
+  echo "<script>console.log('Success')</script>";
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
+
+require_once ROOT_DIR .'/Components/controller.php';
+$Controller = new Controller($conn);
 ?> 
