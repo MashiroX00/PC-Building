@@ -1,8 +1,10 @@
 <?php
+require 'conectdb.php';
+$res = 0;
 
-require_once './DrugableObjectClass.php';
-
-$item = new DrugItem("1","CPU");
-$item->DisplayData();
-
+if  ($res) {
+    echo "1";
+}else {
+    echo "0";
+}
 ?>

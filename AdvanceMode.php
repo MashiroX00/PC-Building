@@ -3,7 +3,8 @@ session_start();
 include './conectdb.php';
 require ROOT_DIR . "/Components/alert.php";
 $alerts = new alert();
-$alerts->CreSession("Game","Timer");
+
+$alerts->CreSession("Game","Advance");
 if (isset($_SESSION['user']) || isset($_SESSION['admin']) && !empty($_SESSION['user']) || !empty($_SESSION['admin'])) {
     $username = $_SESSION['user'] ?? $_SESSION['admin'];
     $usersql = "SELECT user_id FROM useraccount WHERE username = ?";
@@ -235,135 +236,147 @@ $mbitem = $_POST['nummb'] ?? null;
 $rmitem = $_POST['numrm'] ?? null;
 $stitem = $_POST['numst'] ?? null;
 $psitem = $_POST['numps'] ?? null;
-if ($itemtype == 1) {
-    $itemid = $_POST['cpu'] ?? 0;
-    $point = 25;
-
-    if (!empty($itemid)) {
-        $cpusql = "SELECT Socket FROM cpu WHERE id = ?";
-        $cpustmt = $conn->prepare($cpusql);
-        $cpustmt->execute([$itemid]);
-        $querylga = $cpustmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($querylga as $lgadata) {
-            $lga = $lgadata['Socket'];
-        }
-
-        $checksql = "SELECT mainboard.Cpu_socket FROM mainboard WHERE mainboard.id = ? AND mainboard.Cpu_socket = ?";
-        $check = $conn->prepare($checksql);
-        $check->execute([$mbitem, $lga]);
-        $result = $check->rowCount();
-
-        if ($result > 0) {
-            $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-            $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+25 point");
-        } else {
-            $point = $point - 10;
-            $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-            $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+15/25 point");
-        }
-    } else {
+// var_dump($cpuitem,$mbitem,$rmitem,$stitem,$psitem);
+if ($itemtype) {
+    if (empty($cpuitem) && empty($mbitem) && empty($rmitem) && empty($stitem) && empty($psitem)) {
         $alerts->setalert("error", "Please fill the missing box.");
-    }
-} elseif ($itemtype == 2) {
-    $itemid = $_POST['mainboard'] ?? 0;
-    $point = 30;
-
-    if (!empty($itemid)) {
-        $mainboardsql = "SELECT Cpu_socket,Ram_ddr FROM mainboard WHERE id = ?";
-        $mbstmt = $conn->prepare($mainboardsql);
-        $mbstmt->execute([$itemid]);
-        $querymb = $mbstmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($querymb as $mbdata) {
-            $lga = $mbdata['Cpu_socket'];
-            $ddr = $mbdata['Ram_ddr'];
+    }else {
+        if ($itemtype == 1) {
+            $itemid = $_POST['cpu'] ?? 0;
+            $point = 25;
+            if (!empty($_POST['mainboard']) || !empty($_POST['ram']) || !empty($_POST['storage']) || !empty($_POST['psu'])) {
+                $point = 0;
+                $Controller->Savescore($userid,$Seed,$point);
+            }else {
+                if (!empty($itemid)) {
+                
+                    $cpusql = "SELECT Socket FROM cpu WHERE id = ?";
+                    $cpustmt = $conn->prepare($cpusql);
+                    $cpustmt->execute([$itemid]);
+                    $querylga = $cpustmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($querylga as $lgadata) {
+                        $lga = $lgadata['Socket'];
+                    }
+            
+                    $checksql = "SELECT mainboard.Cpu_socket FROM mainboard WHERE mainboard.id = ? AND mainboard.Cpu_socket = ?";
+                    $check = $conn->prepare($checksql);
+                    $check->execute([$mbitem, $lga]);
+                    $result = $check->rowCount();
+            
+                    if ($result > 0) {
+                        $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
+                        $Controller->Savescore($userid,$Seed,$point);
+                    } else {
+                        $point = $point - 10;
+                        $Controller->Savescore($userid,$Seed,$point);
+                    }
+                } else {
+                    $alerts->setalert("error", "Please fill the missing box.");
+                }
+            }
+            
+        } elseif ($itemtype == 2) {
+            $itemid = $_POST['mainboard'] ?? 0;
+            $point = 30;
+            if (!empty($_POST['cpu']) || !empty($_POST['ram']) || !empty($_POST['storage']) || !empty($_POST['psu'])) {
+                $point = 0;
+                $Controller->Savescore($userid,$Seed,$point);
+            }else {
+                if (!empty($itemid)) {
+                    $mainboardsql = "SELECT Cpu_socket,Ram_ddr FROM mainboard WHERE id = ?";
+                    $mbstmt = $conn->prepare($mainboardsql);
+                    $mbstmt->execute([$itemid]);
+                    $querymb = $mbstmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($querymb as $mbdata) {
+                        $lga = $mbdata['Cpu_socket'];
+                        $ddr = $mbdata['Ram_ddr'];
+                    }
+            
+                    $checksql = "SELECT Socket FROM cpu WHERE cpu.id = ? AND cpu.Socket = ?";
+                    $check = $conn->prepare($checksql);
+                    $check->execute([$cpuitem, $lga]);
+                    $result = $check->rowCount();
+            
+                    $checksql1 = "SELECT ddr FROM ram WHERE ram.id = ? AND ram.ddr = ?";
+                    $check1 = $conn->prepare($checksql1);
+                    $check1->execute([$rmitem, $ddr]);
+                    $result1 = $check1->rowCount();
+            
+                    if ($result || $result1 > 0) {
+                        $Controller->Savescore($userid,$Seed,$point);
+                    } else {
+                        $point = $point - 15;
+                        $Controller->Savescore($userid,$Seed,$point);
+                    }
+                } else {
+                    $alerts->setalert("error", "Please  fill the missing box.");
+                }
+            }
+            
+        } elseif ($itemtype == 3) {
+            $itemid = $_POST['ram'] ?? 0;
+            $point = 15;
+            if (!empty($_POST['mainboard']) || !empty($_POST['cpu']) || !empty($_POST['storage']) || !empty($_POST['psu'])) {
+                $point = 0;
+                $Controller->Savescore($userid,$Seed,$point);
+            }else {
+                if (!empty($itemid)) {
+                    $ramsql = "SELECT ddr FROM ram WHERE id = ?";
+                    $ramstmt = $conn->prepare($ramsql);
+                    $ramstmt->execute([$itemid]);
+                    $querm = $ramstmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($querm as $rmdata) {
+                        $ddr = $rmdata['ddr'];
+                    }
+            
+                    $checksql = "SELECT Ram_ddr FROM mainboard WHERE mainboard.id = ? AND mainboard.Ram_ddr = ?";
+                    $check = $conn->prepare($checksql);
+                    $check->execute([$mbitem, $ddr]);
+                    $result = $check->rowCount();
+            
+                    if ($check > 0) {
+                        $Controller->Savescore($userid,$Seed,$point);
+                    } else {
+                        $point = $point - 5;
+                        $Controller->Savescore($userid,$Seed,$point);
+                    }
+                } else {
+                    $alerts->setalert("error", "Please fill the missing box.");
+                }
+            }
+            
+        } elseif ($itemtype == 4) {
+            $itemid = $_POST['storage'] ?? 0;
+            $point = 20;
+            if (!empty($_POST['mainboard']) || !empty($_POST['ram']) || !empty($_POST['cpu']) || !empty($_POST['psu'])) {
+                $point = 0;
+                $Controller->Savescore($userid,$Seed,$point);
+            }else {
+                if (!empty($itemid)) {
+                    $Controller->Savescore($userid,$Seed,$point);
+                } else {
+                    $alerts->setalert("error", "Please fill the missing box.");
+                }
+            }
+            
+        } elseif ($itemtype == 5) {
+            $itemid = $_POST['psu'] ?? 0;
+            $point = 20;
+            if (!empty($_POST['mainboard']) || !empty($_POST['ram']) || !empty($_POST['storage']) || !empty($_POST['cpu'])) {
+                $point = 0;
+                $Controller->Savescore($userid,$Seed,$point);
+            }else {
+                if (!empty($itemid)) {
+                    $Controller->Savescore($userid,$Seed,$point);
+                } else {
+                    $alerts->setalert("error", "Please fill the missing box.");
+                }
+            }
+           
         }
-
-        $checksql = "SELECT Socket FROM cpu WHERE cpu.id = ? AND cpu.Socket = ?";
-        $check = $conn->prepare($checksql);
-        $check->execute([$cpuitem, $lga]);
-        $result = $check->rowCount();
-
-        $checksql1 = "SELECT ddr FROM ram WHERE ram.id = ? AND ram.ddr = ?";
-        $check1 = $conn->prepare($checksql1);
-        $check1->execute([$rmitem, $ddr]);
-        $result1 = $check1->rowCount();
-
-        if ($result || $result1 > 0) {
-            $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-            $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+30/30 point");
-        } else {
-            $point = $point - 15;
-            $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-            $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+15/30 point");
-        }
-    } else {
-        $alerts->setalert("error", "Please  fill the missing box.");
-    }
-} elseif ($itemtype == 3) {
-    $itemid = $_POST['ram'] ?? 0;
-    $point = 15;
-
-    if (!empty($itemid)) {
-        $ramsql = "SELECT ddr FROM ram WHERE id = ?";
-        $ramstmt = $conn->prepare($ramsql);
-        $ramstmt->execute([$itemid]);
-        $querm = $ramstmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($querm as $rmdata) {
-            $ddr = $rmdata['ddr'];
-        }
-
-        $checksql = "SELECT Ram_ddr FROM mainboard WHERE mainboard.id = ? AND mainboard.Ram_ddr = ?";
-        $check = $conn->prepare($checksql);
-        $check->execute([$mbitem, $ddr]);
-        $result = $check->rowCount();
-
-        if ($check > 0) {
-            $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-            $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+15/15 point");
-        } else {
-            $point = $point - 5;
-            $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-            $querytmp = $conn->prepare($tmp);
-            $querytmp->execute([$userid, $point, $Seed]);
-            $alerts->setalert("success", "+10/15 point");
-        }
-    } else {
-        $alerts->setalert("error", "Please fill the missing box.");
-    }
-} elseif ($itemtype == 4) {
-    $itemid = $_POST['storage'] ?? 0;
-    $point = 20;
-
-    if (!empty($itemid)) {
-        $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-        $querytmp = $conn->prepare($tmp);
-        $querytmp->execute([$userid, $point, $Seed]);
-        $alerts->setalert("success", "+20/20 point");
-    } else {
-        $alerts->setalert("error", "Please fill the missing box.");
-    }
-} elseif ($itemtype == 5) {
-    $itemid = $_POST['psu'] ?? 0;
-    $point = 20;
-    if (!empty($itemid)) {
-        $tmp = "INSERT INTO timermodetmp (userid,score,gameid) VALUES (?,?,?)";
-        $querytmp = $conn->prepare($tmp);
-        $querytmp->execute([$userid, $point, $Seed]);
-        $alerts->setalert("success", "+20/20 point");
-    } else {
-        $alerts->setalert("error", "Please fill the missing box.");
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -521,11 +534,11 @@ if ($itemtype == 1) {
                     </div>
                     <span>Game ID(Seed): </span>
                     <p class="text fs-5" id="GameSeed"><?php echo $Seed ?></p>
-                    <div class="dropzone box-1" id="dropzone1" data-item-type="cpu"><?php echo $cpuName ?></div>
-                    <div class="dropzone box-2" id="dropzone2" data-item-type="mainboard"><?php echo $mainboardName ?></div>
-                    <div class="dropzone box-3" id="dropzone3" data-item-type="ram"><?php echo $ramName ?></div>
-                    <div class="dropzone box-5" id="dropzone4" data-item-type="storage"><?php echo $storageName ?></div>
-                    <div class="dropzone box-4" id="dropzone5" data-item-type="psu"><?php echo $psuName ?></div>
+                    <div class="dropzone box-1" id="dropzone1" data-item-type="cpu"></div>
+                    <div class="dropzone box-2" id="dropzone2" data-item-type="mainboard"></div>
+                    <div class="dropzone box-3" id="dropzone3" data-item-type="ram"></div>
+                    <div class="dropzone box-5" id="dropzone4" data-item-type="storage"></div>
+                    <div class="dropzone box-4" id="dropzone5" data-item-type="psu"></div>
                     <input type="hidden" name="timeleft" value="<?php echo $Setime ?>">
                     <input type="hidden" name="itemtype" value="<?php echo $missingpart ?>">
                     <input type="hidden" name="numcpu" value="<?php echo $numcpu ?>">
@@ -555,8 +568,20 @@ if ($itemtype == 1) {
               <button type="button" class="btn" data-bs-toggle="popover" data-bs-title="ช่วยเหลือ" data-bs-content="ลากไอเทมจากทางซ้ายมือมาใส่ลงในกล่องทางขวามือให้ตรงกับประเภทของกล่องนั่นๆ" data-bs-placement="left" >
                  <i class="fa-regular fa-circle-question fa-2xl"></i> 
                 </button>
-
             </div>
+          </div>
+          <div class="col-12 col-sm-12 mt-5 bg-info">
+            <p class="text fs-5">ของที่มีอยู่แล้ว: </p>
+          <?php echo "CPU: ".$cpuName ?>
+          <hr>
+          <?php echo "Mainboard: ".$mainboardName ?>
+          <hr>
+          <?php echo "Ram: ".$ramName ?>
+          <hr>
+          <?php echo "Storage: ".$storageName ?>
+          <hr>
+          <?php echo "PSU: ".$psuName ?>
+          <hr>
           </div>
         </div>
             </div>

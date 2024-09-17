@@ -6,7 +6,8 @@ $alerts = new alert();
 
 $userid = 0;
 $gameSeed = $_POST["seed"];
-$gametype = "Timer";
+$gametype = $_SESSION['Game'] ?? "Timer";
+
 
 if (!empty($gameSeed)) {
     $sql = "SELECT score FROM timermodetmp WHERE gameid = ?";

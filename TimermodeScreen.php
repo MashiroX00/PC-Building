@@ -7,6 +7,11 @@ $rou = new alert();
 if (empty($rou->ShowSession("result"))) {
     $rou->header("index.php");
 }
+if ($_SESSION["Game"] == "Advance") {
+    $play = "AdvanceMode.php";
+}else {
+    $play = "TimerMode.php";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +40,7 @@ if (empty($rou->ShowSession("result"))) {
                 if(response.success) {
                     console.log("Session removed.");
                     if (value == 'Play') {
-                        window.location.href = '<?php $rou->getserverip()?>Timermode.php';
+                        window.location.href = '<?php $rou->getserverip()?><?php echo $play?>';
                     }else if (value == 'Leader') {
                         window.location.href = '<?php $rou->getserverip()?>viewpc.php';
                     }else if (value == 'Return'){
@@ -89,7 +94,11 @@ if (empty($rou->ShowSession("result"))) {
             <button class="btn btn-light mb-2 d-block ms-5 me-5 remo w-75" onclick="clearsessionreq('Return')">Return to mainmenu.</button>
 
             </div>
-            <div class="col-4"></div>
+            <div class="col-4">
+                <?php echo $rou->getserverip();
+                    echo $play;
+                ?>
+            </div>
         </div>
     </div>
     
