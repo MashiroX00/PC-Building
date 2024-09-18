@@ -1,11 +1,9 @@
-// require('dotenv').config({ path: path.resolve(__dirname, '../.env')});
 const primaryurl = window.location.origin;
 const app = "/PC-Building/";
-
+const url = primaryurl + app;
 const draggableItem = document.querySelectorAll(".draggable");
 const dropzone = document.querySelectorAll(".dropzone");
 var worngcounter = 0;
-z;
 
 draggableItem.forEach((draggable) => {
   draggable.addEventListener("dragstart", (event) => {
@@ -76,7 +74,7 @@ dropzone.forEach((dropzone) => {
   });
 });
 
-const url = primaryurl + app;
+
 function sendXML() {
   const dropzones = document.querySelectorAll(".dropzone");
   const itemArray = [];

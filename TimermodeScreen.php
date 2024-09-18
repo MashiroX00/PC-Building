@@ -95,9 +95,6 @@ if ($_SESSION["Game"] == "Advance") {
 
             </div>
             <div class="col-4">
-                <?php echo $rou->getserverip();
-                    echo $play;
-                ?>
             </div>
         </div>
     </div>

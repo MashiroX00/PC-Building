@@ -166,7 +166,7 @@ if ($inleader) {
                             <td><?php echo htmlspecialchars($q['Game_type']); ?></td>
                             <td><?php echo htmlspecialchars($q['score']); ?></td>
                             <td><?php echo htmlspecialchars($timeDisplay); ?></td>
-                            <?php if (htmlspecialchars($q['Game_type']) == "Timer") : ?>
+                            <?php if (htmlspecialchars($q['Game_type']) == "Timer" || $q['Game_type'] == "Advance") : ?>
                                 <td><button href="#" class="btn btn-outline-danger" disabled>More info</button></td>
                             <?php else : ?>
                                 <td><a href="#" class="btn btn-outline-primary">More info</a></td>
