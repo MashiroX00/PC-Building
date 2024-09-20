@@ -117,56 +117,7 @@ if ($username != "") {
                         </div>
                     </form>
                 <?php } ?>
-
             </div>
-
-            <div class="col-4 col-sm-6">
-                <h4 class="text-white">Login Time</h4>
-                <div class="table-responsive mt-3">
-                    <table class="table table-hover ">
-                        <thead>
-                            <tr>
-                                <th scope="col">Username</th>
-                                <th scope="col">Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($row > 0) : ?>
-                                <?php foreach ($query1 as $Data1) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $Data1['username']; ?>
-                                        </td>
-                                        <td><?php echo $Data1['time_logger']; ?></td>
-                                    </tr>
-                                <?php }; ?>
-                            <?php else : ?>
-                                <tr>
-                                    <td colspan="7">
-                                        <h4 class="text-center text-warning">ไม่พบในระบบ</h4>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-
-                        </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="<?php $url ?>Accountinfo.php?page=1" aria-label="Previous" class="page-link text-black">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
-                                <li class="page-item"><a href="<?php $url ?>Accountinfo.php?page=<?php echo $i; ?>" class="page-link text-black"><?php echo $i; ?></a></li>
-                            <?php } ?>
-                            <li class="page-item">
-                                <a href="<?php $url ?>Accountinfo.php?page=<?php echo $totalPage; ?>" aria-label="Next" class="page-link text-black">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>
