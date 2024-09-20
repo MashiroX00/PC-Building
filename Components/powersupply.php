@@ -66,7 +66,7 @@
                                         <td><?php echo $Data['watt']; ?></td>
                                         <td><?php echo $Data['detail']; ?></td>
                                         <td>
-                                            <form method="post" action="<?php echo $url ?>UsermanageEdit.php" style="display: inline;">
+                                            <form method="post" action="<?php echo $url ?>ItemAdd/powersupply.php" style="display: inline;">
                                                 <input name="id" type="hidden" value="<?php echo $Data['id']; ?>">
                                                 <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-1"></i>Edit</button>
                                             </form>

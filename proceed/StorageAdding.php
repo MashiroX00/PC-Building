@@ -37,7 +37,7 @@ if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpe
 }
 
 switch ($type) {
-    case "0" : $_SESSION['error'] = "Please Choose RAM DDR."; header("Lcation: {$url}ItemAdd/storage.php");
+    case "0" : $_SESSION['error'] = "Please Choose Storage Type."; header("Lcation: {$url}ItemAdd/storage.php");
     break;
     case "1" : $typeid = "HDD";
     break;
@@ -47,7 +47,7 @@ switch ($type) {
     break;
     case "4" : $typeid = "Nvme M.2";
     break;
-    default : $_SESSION['error'] = "Please Choose RAM DDR."; header("Lcation: {$url}ItemAdd/storage.php");
+    default : $_SESSION['error'] = "Please Choose Storage Type."; header("Lcation: {$url}ItemAdd/storage.php");
     break;
 }
 

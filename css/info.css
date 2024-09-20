@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 .minimg img{
-    object-fit: cover;
+    object-fit: scale-down;
 }
 
 .card:hover{
@@ -31,7 +31,7 @@ body {
     .minimg img{
         max-width: auto;
         max-height: auto;
-        object-fit: cover;
+        object-fit: scale-down;
         
     }
     .card {
@@ -50,6 +50,6 @@ body {
     .minimg img{
         max-width: 200px;
         max-height: auto;
-        object-fit: cover;
+        object-fit: scale-down;
     }
 }

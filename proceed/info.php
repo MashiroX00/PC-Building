@@ -34,7 +34,7 @@ if ($status == 0) {
     if (move_uploaded_file($imgTmp,$targetFile)) {
         $sql = $conn->prepare("INSERT INTO infomationdata (head,content,picture,FileName) VALUES (?,?,?,?)");
         $sql->execute([$head, $content, $targetFileSaveToDb, $imgName]);
-        $_SESSION['success'] = "Product saved success";
+        $_SESSION['success'] = "Infomation saved success";
         header("Location: $url" . "infomationAdd.php");
     }else {
         $_SESSION['error'] = "Sorry, Failed to uploaded.";
